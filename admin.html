@@ -804,7 +804,29 @@
 
 </div>
 
+<div class="admin-prizes">
 
+    <h3>🏆 Foydalanuvchi yutuqlari</h3>
+
+    <div style="display:flex; gap:10px; margin-top:15px;">
+
+        <input
+            type="text"
+            id="prizeAccountId"
+            maxlength="14"
+            inputmode="numeric"
+            placeholder="14 xonali Account ID"
+        >
+
+        <button id="findPrizesBtn">
+            🔍 Yutuqlarni ko‘rish
+        </button>
+
+    </div>
+
+    <div id="userPrizesList" style="margin-top:20px;"></div>
+
+</div>
         <!-- =================================================
              USERS
         ================================================= -->
@@ -1043,7 +1065,285 @@ accountId:
 
 }
 
+const prizeAccountId =
+    document.getElementById("prizeAccountId");
 
+const findPrizesBtn =
+    document.getElementById("findPrizesBtn");
+
+const userPrizesList =
+    document.getElementById("userPrizesList");
+
+
+findPrizesBtn.addEventListener("click", async () => {
+
+    const accountId =
+        prizeAccountId.value.trim();
+
+    if (!/^\d{14}$/.test(accountId)) {
+
+        userPrizesList.innerHTML = `
+            <div style="
+                padding:15px;
+                border-radius:12px;
+                background:#3b1515;
+                color:#ff8a8a;
+            ">
+                ❌ 14 xonali Account ID kiriting.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    userPrizesList.innerHTML = `
+        <div style="padding:15px;">
+            ⏳ Yutuqlar qidirilmoqda...
+        </div>
+    `;
+
+
+    try {
+
+        // Account ID orqali userni topamiz
+        const usersQuery = query(
+            collection(db, "users"),
+            where("accountId", "==", accountId)
+        );
+
+        const usersSnapshot =
+            await getDocs(usersQuery);
+
+
+        if (usersSnapshot.empty) {
+
+            userPrizesList.innerHTML = `
+                <div style="
+                    padding:15px;
+                    border-radius:12px;
+                    background:#3b1515;
+                    color:#ff8a8a;
+                ">
+                    ❌ Bu Account ID topilmadi.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        const userDoc =
+            usersSnapshot.docs[0];
+
+        const uid = userDoc.id;
+
+
+        // Shu userning yutuqlarini olamiz
+        const prizesQuery = query(
+            collection(db, "prizes"),
+            where("userId", "==", uid)
+        );
+
+        const prizesSnapshot =
+            await getDocs(prizesQuery);
+
+
+        if (prizesSnapshot.empty) {
+
+            userPrizesList.innerHTML = `
+                <div style="
+                    padding:20px;
+                    text-align:center;
+                    color:#999;
+                ">
+                    🏆 Hali yutuqlar yo‘q.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        userPrizesList.innerHTML = "";
+
+
+        prizesSnapshot.forEach((prizeDoc) => {
+
+            const prize =
+                prizeDoc.data();
+
+            const prizeId =
+                prizeDoc.id;
+
+            const isCompleted =
+                prize.status === "completed";
+
+
+            const item =
+                document.createElement("div");
+
+            item.style.cssText = `
+                padding:18px;
+                margin-bottom:12px;
+                border-radius:16px;
+                border:1px solid rgba(255,255,255,.1);
+                background:rgba(255,255,255,.04);
+            `;
+
+
+            item.innerHTML = `
+
+                <div style="
+                    font-size:22px;
+                    margin-bottom:8px;
+                ">
+                    ${prize.icon || "🏆"}
+                </div>
+
+                <div style="
+                    font-weight:900;
+                    color:#ffd84d;
+                    margin-bottom:8px;
+                ">
+                    ${prize.name || "Yutuq"}
+                </div>
+
+                <div style="
+                    margin-bottom:12px;
+                    color:${isCompleted ? "#86efac" : "#fbbf24"};
+                    font-weight:800;
+                    font-size:12px;
+                ">
+                    ${
+                        isCompleted
+                        ? "✅ RASMIYLASHTIRILDI"
+                        : "⏳ RASMIYLASHTIRILMAGAN"
+                    }
+                </div>
+
+                ${
+                    isCompleted
+                    ? ""
+                    : `
+                        <button
+                            class="complete-prize-btn"
+                            data-id="${prizeId}"
+                            style="
+                                width:100%;
+                                padding:12px;
+                                border:0;
+                                border-radius:12px;
+                                background:linear-gradient(
+                                    135deg,
+                                    #22c55e,
+                                    #16a34a
+                                );
+                                color:white;
+                                font-weight:900;
+                                cursor:pointer;
+                            "
+                        >
+                            ✅ RASMIYLASHTIRILDI DEB BELGILASH
+                        </button>
+                    `
+                }
+
+            `;
+
+
+            userPrizesList.appendChild(item);
+        });
+
+
+        // Rasmiylashtirish tugmalari
+        document
+            .querySelectorAll(".complete-prize-btn")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        const prizeId =
+                            button.dataset.id;
+
+                        button.disabled = true;
+
+                        button.innerHTML =
+                            "⏳ Saqlanmoqda...";
+
+
+                        try {
+
+                            await updateDoc(
+                                doc(
+                                    db,
+                                    "prizes",
+                                    prizeId
+                                ),
+                                {
+                                    status: "completed",
+                                    completedAt:
+                                        new Date()
+                                }
+                            );
+
+
+                            button.parentElement
+                                .querySelector(
+                                    "div:nth-child(3)"
+                                )
+                                .innerHTML =
+                                "✅ RASMIYLASHTIRILDI";
+
+                            button.parentElement
+                                .querySelector(
+                                    "div:nth-child(3)"
+                                ).style.color =
+                                "#86efac";
+
+                            button.remove();
+
+
+                        } catch (error) {
+
+                            console.error(error);
+
+                            button.disabled =
+                                false;
+
+                            button.innerHTML =
+                                "❌ Qayta urinib ko‘ring";
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+    } catch (error) {
+
+        console.error(
+            "Yutuqlarni olishda xato:",
+            error
+        );
+
+        userPrizesList.innerHTML = `
+            <div style="
+                padding:15px;
+                border-radius:12px;
+                background:#3b1515;
+                color:#ff8a8a;
+            ">
+                ❌ Xatolik yuz berdi.
+            </div>
+        `;
+    }
+
+});
 /* =====================================================
    RENDER USERS
 ===================================================== */

@@ -1910,7 +1910,7 @@ footer{
                 
                 
                 <div class="segment seg5">
-                     🔥 70% SKIDKA
+                   Xizmat haqi tekin😎
                     </div>
                     
                                     <div class="segment seg6">
@@ -2038,11 +2038,11 @@ footer{
         </div>
 
         <strong>
-            70% SKIDKA
+           xizmat haqi tekin😎
         </strong>
 
         <span>
-            Katta chegirma
+          Xizmati tekin siz uchun
         </span>
 
     </div>
@@ -2169,14 +2169,14 @@ footer{
         </h2>
 
         <p class="modal-description">
-            Nomerning asl narxini kiriting.
+            CHiroyli nomerning asl narxini kiriting.
             Siz yutgan chegirma avtomatik
             hisoblanadi.
         </p>
 
 
         <label class="label">
-            NOMERNING ASL NARXI
+            CHIROYLI NOMERNING ASL NARXI
         </label>
 
         <input
@@ -2232,13 +2232,13 @@ footer{
             </div>
 
 
-            <a
-                href="https://t.me/Code4jannah"
-                target="_blank"
-                class="final-telegram"
-            >
-                📲 YUTUQNI OLISH UCHUN YOZISH
-            </a>
+    <a
+    href="https://t.me/Code4jannah?text=Assalomu%20alaykum!%20%F0%9F%91%8B%20Men%20yutuq%20yutgandim%20%F0%9F%8F%86%20Yutuqimni%20rasmiylashtirib%20berishingizni%20so%E2%80%98ramoqchi%20edim%20%F0%9F%98%8A"
+    target="_blank"
+    class="final-telegram"
+>
+    📲 YUTUQNI RASMIYLASHTIRISH
+</a>
 
         </div>
 
@@ -2425,36 +2425,30 @@ const prizes = [
 ========================= */
 
 async function savePrize(prize) {
-
     if (!currentUser) return;
 
+    // ❌ YUTUQSIZ bo‘lsa, Firestore'ga saqlamaymiz
+    if (prize.type === "none") {
+        return;
+    }
+
     try {
+        await addDoc(collection(db, "prizes"), {
+            userId: currentUser.uid,
+            name: prize.name,
+            icon: prize.icon,
+            type: prize.type,
+            discount: prize.discount || 0,
+            status: "pending",
+            createdAt: serverTimestamp()
+        });
 
-        await addDoc(
-            collection(db, "prizes"),
-            {
-                userId: currentUser.uid,
-                name: prize.name,
-                icon: prize.icon,
-                type: prize.type,
-                discount: prize.discount || 0,
-                createdAt: serverTimestamp()
-            }
-        );
-
-        console.log("✅ Yutuq saqlandi");
-
-        await loadMyPrizes();
+        console.log("🏆 Yutuq saqlandi");
 
     } catch (error) {
-
-        console.error(
-            "❌ Yutuqni saqlash xatosi:",
-            error
-        );
+        console.error("Yutuqni saqlashda xato:", error);
     }
 }
-
 
 /* =========================
    LOAD MY PRIZES

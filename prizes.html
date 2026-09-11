@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Gold Nomerlar | Yutuqlarim</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(245,197,66,.14),
+          transparent 35%
+        ),
+        #080808;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading {
+      position: fixed;
+      inset: 0;
+      background: #080808;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(245,197,66,.2);
+      border-top-color: #f5c542;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      color: #f5c542;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       PAGE
+    ========================= */
+
+    .page {
+      display: none;
+      max-width: 850px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    /* =========================
+       TOP BAR
+    ========================= */
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(245,197,66,.25);
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      color: #f5c542;
+      cursor: pointer;
+      font-size: 21px;
+      transition: .2s;
+    }
+
+    .back-btn:hover {
+      background: rgba(245,197,66,.1);
+      transform: translateY(-2px);
+    }
+
+    .top-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #f5c542;
+    }
+
+    .top-spacer {
+      width: 44px;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header-box {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(245,197,66,.22);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(245,197,66,.11),
+          rgba(255,255,255,.025)
+        );
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.35);
+      text-align: center;
+    }
+
+    .header-box::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(245,197,66,.09);
+      border-radius: 50%;
+      filter: blur(55px);
+      top: -100px;
+      left: -50px;
+    }
+
+    .header-icon {
+      position: relative;
+      width: 76px;
+      height: 76px;
+      margin: auto;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(
+          145deg,
+          #f5c542,
+          #a87500
+        );
+      font-size: 37px;
+      box-shadow:
+        0 0 35px rgba(245,197,66,.25);
+    }
+
+    .header-title {
+      position: relative;
+      margin-top: 15px;
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .header-subtitle {
+      position: relative;
+      margin-top: 8px;
+      color: #999;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       SUMMARY
+    ========================= */
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .summary-card {
+      padding: 18px 10px;
+      text-align: center;
+      border-radius: 17px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .summary-icon {
+      font-size: 21px;
+      margin-bottom: 7px;
+    }
+
+    .summary-value {
+      color: #f5c542;
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .summary-label {
+      margin-top: 5px;
+      color: #777;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       PRIZES BOX
+    ========================= */
+
+    .prizes-box {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .box-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .box-title-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .refresh-btn {
+      border: 1px solid rgba(245,197,66,.22);
+      border-radius: 10px;
+      padding: 8px 11px;
+      background: rgba(245,197,66,.07);
+      color: #f5c542;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .refresh-btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       PRIZE LIST
+    ========================= */
+
+    .prize-list {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .prize-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 16px;
+      border-radius: 17px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.045),
+          rgba(255,255,255,.018)
+        );
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .prize-card.completed {
+      border-color: rgba(134,239,172,.22);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(134,239,172,.07),
+          rgba(255,255,255,.02)
+        );
+    }
+
+    .prize-card.pending {
+      border-color: rgba(251,191,36,.18);
+    }
+
+    .prize-icon {
+      width: 53px;
+      height: 53px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      background: rgba(245,197,66,.1);
+      font-size: 27px;
+    }
+
+    .prize-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .prize-name {
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .prize-date {
+      margin-top: 6px;
+      color: #777;
+      font-size: 10px;
+    }
+
+    .prize-status {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 5px 8px;
+      border-radius: 8px;
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .prize-status.completed {
+      color: #86efac;
+      background: rgba(134,239,172,.08);
+      border: 1px solid rgba(134,239,172,.15);
+    }
+
+    .prize-status.pending {
+      color: #fbbf24;
+      background: rgba(251,191,36,.08);
+      border: 1px solid rgba(251,191,36,.15);
+    }
+
+    .prize-badge {
+      flex-shrink: 0;
+      padding: 7px 9px;
+      border-radius: 9px;
+      background: rgba(245,197,66,.1);
+      color: #f5c542;
+      font-size: 9px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    .empty-prizes {
+      padding: 40px 15px;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .empty-icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+      opacity: .7;
+    }
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-box {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255,60,60,.08);
+      border: 1px solid rgba(255,60,60,.25);
+      color: #ff8080;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       BACK PROFILE
+    ========================= */
+
+    .profile-btn {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(245,197,66,.22);
+      border-radius: 15px;
+      padding: 15px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(245,197,66,.12),
+          rgba(245,197,66,.04)
+        );
+      color: #f5c542;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .profile-btn:hover {
+      transform: translateY(-2px);
+      background: rgba(245,197,66,.17);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+      .page {
+        padding: 12px;
+      }
+
+      .top-title {
+        font-size: 17px;
+      }
+
+      .header-box {
+        padding: 24px 15px;
+      }
+
+      .header-title {
+        font-size: 23px;
+      }
+
+      .summary {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .summary-card {
+        padding: 15px 5px;
+      }
+
+      .summary-value {
+        font-size: 21px;
+      }
+
+      .summary-label {
+        font-size: 9px;
+      }
+
+      .prizes-box {
+        padding: 16px;
+      }
+
+      .prize-card {
+        align-items: flex-start;
+        padding: 13px;
+      }
+
+      .prize-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 23px;
+      }
+
+      .prize-name {
+        font-size: 13px;
+      }
+
+      .prize-badge {
+        font-size: 8px;
+        padding: 6px 7px;
+      }
+
+    }
+
+    @media (max-width: 400px) {
+
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+      }
+
+      .summary-icon {
+        margin-bottom: 0;
+      }
+
+      .summary-label {
+        margin-top: 0;
+      }
+
+      .prize-card {
+        flex-wrap: wrap;
+      }
+
+      .prize-info {
+        width: calc(100% - 60px);
+      }
+
+      .prize-badge {
+        margin-left: 58px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       LOADING
+  ========================= -->
+
+  <div class="loading" id="loading">
+
+    <div class="loader"></div>
+
+    <div class="loading-text">
+      Yutuqlar yuklanmoqda...
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       PAGE
+  ========================= -->
+
+  <main class="page" id="page">
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+      <button
+        class="back-btn"
+        id="backBtn"
+      >
+        ←
+      </button>
+
+      <div class="top-title">
+        GOLD NOMERLAR
+      </div>
+
+      <div class="top-spacer"></div>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+      class="error-box"
+      id="errorBox"
+    >
+
+      <b>Xatolik yuz berdi!</b>
+
+      <div id="errorText"></div>
+
+    </div>
+
+
+    <!-- HEADER -->
+
+    <section class="header-box">
+
+      <div class="header-icon">
+        🏆
+      </div>
+
+      <div class="header-title">
+        Mening yutuqlarim
+      </div>
+
+      <div class="header-subtitle">
+        Omad Barabanidan qo‘lga kiritgan
+        barcha yutuqlaringiz shu yerda
+      </div>
+
+    </section>
+
+
+    <!-- SUMMARY -->
+
+    <section class="summary">
+
+      <div class="summary-card">
+
+        <div class="summary-icon">
+          🏆
+        </div>
+
+        <div>
+          <div
+            class="summary-value"
+            id="totalPrizes"
+          >
+            0
+          </div>
+
+          <div class="summary-label">
+            JAMI YUTUQ
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <div class="summary-icon">
+          ✅
+        </div>
+
+        <div>
+          <div
+            class="summary-value"
+            id="completedPrizes"
+          >
+            0
+          </div>
+
+          <div class="summary-label">
+            RASMIYLASHTIRILDI
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <div class="summary-icon">
+          ⏳
+        </div>
+
+        <div>
+          <div
+            class="summary-value"
+            id="pendingPrizes"
+          >
+            0
+          </div>
+
+          <div class="summary-label">
+            KUTILMOQDA
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRIZES -->
+
+    <section class="prizes-box">
+
+      <div class="box-title">
+
+        <div class="box-title-left">
+          <span>🏆</span>
+          Yutuqlar ro‘yxati
+        </div>
+
+        <button
+          class="refresh-btn"
+          id="refreshBtn"
+        >
+          🔄 Yangilash
+        </button>
+
+      </div>
+
+
+      <div id="profilePrizes">
+
+        <div class="empty-prizes">
+
+          <div class="empty-icon">
+            ⏳
+          </div>
+
+          Yutuqlar yuklanmoqda...
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFILE BUTTON -->
+
+    <button
+      class="profile-btn"
+      id="profileBtn"
+    >
+      👤 Profilimga qaytish
+    </button>
+
+  </main>
+
+
+  <!-- =========================
+       FIREBASE
+  ========================= -->
+
+  <script type="module">
+
+    import {
+      initializeApp,
+      getApps,
+      getApp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+    import {
+      getFirestore,
+      collection,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    /* =========================
+       FIREBASE CONFIG
+    ========================= */
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyAW4JRvs_gwVHM1R8NJqfpB_toYIIZjWl0",
+
+      authDomain:
+        "authapp-e44f9.firebaseapp.com",
+
+      projectId:
+        "authapp-e44f9",
+
+      storageBucket:
+        "authapp-e44f9.firebasestorage.app",
+
+      messagingSenderId:
+        "102646770113",
+
+      appId:
+        "1:102646770113:web:1eeb323aa47269ac0a6740",
+
+      measurementId:
+        "G-YND4R4909"
+
+    };
+
+
+    /* =========================
+       FIREBASE INIT
+    ========================= */
+
+    const app =
+      getApps().length
+        ? getApp()
+        : initializeApp(firebaseConfig);
+
+    const auth =
+      getAuth(app);
+
+    const db =
+      getFirestore(app);
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const loading =
+      document.getElementById("loading");
+
+    const page =
+      document.getElementById("page");
+
+    const errorBox =
+      document.getElementById("errorBox");
+
+    const errorText =
+      document.getElementById("errorText");
+
+    const profilePrizes =
+      document.getElementById("profilePrizes");
+
+    const totalPrizes =
+      document.getElementById("totalPrizes");
+
+    const completedPrizes =
+      document.getElementById("completedPrizes");
+
+    const pendingPrizes =
+      document.getElementById("pendingPrizes");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const profileBtn =
+      document.getElementById("profileBtn");
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    function showError(message) {
+
+      errorBox.style.display =
+        "block";
+
+      errorText.textContent =
+        message;
+
+    }
+
+
+    /* =========================
+       DATE FORMAT
+    ========================= */
+
+    function formatDate(timestamp) {
+
+      if (!timestamp) {
+
+        return "Sana mavjud emas";
+
+      }
+
+      try {
+
+        const date =
+          timestamp.toDate
+            ? timestamp.toDate()
+            : new Date(timestamp);
+
+        return date.toLocaleString(
+          "uz-UZ",
+          {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+          }
+        );
+
+      }
+
+      catch (error) {
+
+        return "Sana mavjud emas";
+
+      }
+
+    }
+
+
+    /* =========================
+       LOAD PRIZES
+    ========================= */
+
+    async function loadMyPrizes(userId) {
+
+      try {
+
+        refreshBtn.disabled =
+          true;
+
+        refreshBtn.textContent =
+          "⏳ Yuklanmoqda...";
+
+
+        const q = query(
+          collection(db, "prizes"),
+          where(
+            "userId",
+            "==",
+            userId
+          )
+        );
+
+
+        const snapshot =
+          await getDocs(q);
+
+
+        /* =========================
+           ONLY REAL PRIZES
+        ========================= */
+
+        const prizes = [];
+
+        snapshot.forEach(
+          (docSnap) => {
+
+            const data =
+              docSnap.data();
+
+
+            /*
+              YUTUQSIZLAR UMUMAN
+              RO‘YXATGA KIRITILMAYDI
+            */
+
+            if (
+              data.type === "none"
+            ) {
+
+              return;
+
+            }
+
+
+            prizes.push({
+
+              id:
+                docSnap.id,
+
+              ...data
+
+            });
+
+          }
+        );
+
+
+        /* =========================
+           SORT
+           COMPLETED FIRST
+        ========================= */
+
+        prizes.sort(
+          (a, b) => {
+
+            const aCompleted =
+              a.status === "completed"
+                ? 1
+                : 0;
+
+            const bCompleted =
+              b.status === "completed"
+                ? 1
+                : 0;
+
+
+            /*
+              RASMIYLASHTIRILGANLAR
+              BOSHIDA
+            */
+
+            if (
+              aCompleted !==
+              bCompleted
+            ) {
+
+              return (
+                bCompleted -
+                aCompleted
+              );
+
+            }
+
+
+            /*
+              BIR XIL STATUSDA
+              YANGI YUTUQ BOSHIDA
+            */
+
+            const aTime =
+              a.createdAt?.toMillis
+                ? a.createdAt.toMillis()
+                : 0;
+
+            const bTime =
+              b.createdAt?.toMillis
+                ? b.createdAt.toMillis()
+                : 0;
+
+
+            return bTime - aTime;
+
+          }
+        );
+
+
+        /* =========================
+           COUNTS
+        ========================= */
+
+        const completed =
+          prizes.filter(
+            prize =>
+              prize.status ===
+              "completed"
+          ).length;
+
+
+        const pending =
+          prizes.filter(
+            prize =>
+              prize.status !==
+              "completed"
+          ).length;
+
+
+        totalPrizes.textContent =
+          prizes.length;
+
+        completedPrizes.textContent =
+          completed;
+
+        pendingPrizes.textContent =
+          pending;
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        if (
+          prizes.length === 0
+        ) {
+
+          profilePrizes.innerHTML = `
+
+            <div class="empty-prizes">
+
+              <div class="empty-icon">
+                🏆
+              </div>
+
+              Hali yutuqlaringiz yo‘q
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        /* =========================
+           RENDER
+        ========================= */
+
+        profilePrizes.innerHTML = `
+
+          <div class="prize-list">
+
+            ${prizes.map(
+              prize => {
+
+                const isCompleted =
+                  prize.status ===
+                  "completed";
+
+
+                const statusText =
+                  isCompleted
+                    ? "✅ RASMIYLASHTIRILDI"
+                    : "⏳ RASMIYLASHTIRILMAGAN";
+
+
+                const statusClass =
+                  isCompleted
+                    ? "completed"
+                    : "pending";
+
+
+                /* BADGE */
+
+                let badge =
+                  "YUTUQ";
+
+
+                if (
+                  prize.type ===
+                    "discount" &&
+                  prize.discount
+                ) {
+
+                  badge =
+                    `${prize.discount}% CHEGIRMA`;
+
+                }
+
+                else if (
+                  prize.type ===
+                  "jackpot"
+                ) {
+
+                  badge =
+                    "JACKPOT";
+
+                }
+
+
+                return `
+
+                  <div
+                    class="
+                      prize-card
+                      ${statusClass}
+                    "
+                  >
+
+                    <div class="prize-icon">
+                      ${prize.icon || "🏆"}
+                    </div>
+
+
+                    <div class="prize-info">
+
+                      <div class="prize-name">
+                        ${
+                          prize.name ||
+                          "Noma'lum yutuq"
+                        }
+                      </div>
+
+
+                      <div class="prize-date">
+                        ${formatDate(
+                          prize.createdAt
+                        )}
+                      </div>
+
+
+                      <div
+                        class="
+                          prize-status
+                          ${statusClass}
+                        "
+                      >
+                        ${statusText}
+                      </div>
+
+                    </div>
+
+
+                    <div class="prize-badge">
+                      ${badge}
+                    </div>
+
+                  </div>
+
+                `;
+
+              }
+            ).join("")}
+
+          </div>
+
+        `;
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Yutuqlarni yuklash xatosi:",
+          error
+        );
+
+
+        profilePrizes.innerHTML = `
+
+          <div class="empty-prizes">
+
+            <div class="empty-icon">
+              ⚠️
+            </div>
+
+            Yutuqlarni yuklab bo‘lmadi
+
+          </div>
+
+        `;
+
+
+        showError(
+          error.message ||
+          "Yutuqlarni yuklashda xatolik yuz berdi."
+        );
+
+      }
+
+      finally {
+
+        refreshBtn.disabled =
+          false;
+
+        refreshBtn.textContent =
+          "🔄 Yangilash";
+
+      }
+
+    }
+
+
+    /* =========================
+       AUTH
+    ========================= */
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.href =
+            "index.html";
+
+          return;
+
+        }
+
+
+        await loadMyPrizes(
+          user.uid
+        );
+
+
+        loading.style.display =
+          "none";
+
+        page.style.display =
+          "block";
+
+      }
+    );
+
+
+    /* =========================
+       REFRESH
+    ========================= */
+
+    refreshBtn.addEventListener(
+      "click",
+      async () => {
+
+        const user =
+          auth.currentUser;
+
+        if (!user) {
+
+          window.location.href =
+            "index.html";
+
+          return;
+
+        }
+
+        await loadMyPrizes(
+          user.uid
+        );
+
+      }
+    );
+
+
+    /* =========================
+       BACK
+    ========================= */
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "profile.html";
+
+      }
+    );
+
+
+    /* =========================
+       PROFILE
+    ========================= */
+
+    profileBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "profile.html";
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
