@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Panel | Gold Nomerlar</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 10% 10%, #3d2c00, transparent 35%),
+        radial-gradient(circle at 90% 90%, #302000, transparent 35%),
+        #050505;
+      color: white;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    /* ================= HEADER ================= */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,193,7,.2);
+
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+
+      box-shadow:
+        0 15px 50px rgba(0,0,0,.35);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 0;
+    }
+
+    .header-logo {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffd700,
+          #ffad00
+        );
+
+      font-size: 26px;
+
+      box-shadow:
+        0 0 25px rgba(255,193,7,.2);
+    }
+
+    .header h1 {
+      color: #ffd54a;
+      font-size: 21px;
+    }
+
+    .header p {
+      color: #888;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .logout {
+      padding: 10px 16px;
+
+      border-radius: 10px;
+      border: 1px solid #ffd54a;
+
+      background: transparent;
+      color: #ffd54a;
+
+      cursor: pointer;
+      white-space: nowrap;
+
+      transition: .2s;
+    }
+
+    .logout:hover {
+      background: #ffd54a;
+      color: #111;
+    }
+
+
+    /* ================= GRID ================= */
+
+    .grid {
+      display: grid;
+
+      grid-template-columns:
+        380px 1fr;
+
+      gap: 20px;
+    }
+
+
+    /* ================= CARD ================= */
+
+    .card {
+      padding: 25px;
+
+      border-radius: 20px;
+
+      background: rgba(255,255,255,.05);
+
+      border: 1px solid rgba(255,193,7,.2);
+
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+
+      box-shadow:
+        0 15px 50px rgba(0,0,0,.25);
+    }
+
+    .card h2 {
+      color: #ffd54a;
+
+      font-size: 20px;
+
+      margin-bottom: 20px;
+    }
+
+
+    /* ================= INPUT ================= */
+
+    label {
+      display: block;
+
+      color: #aaa;
+
+      font-size: 13px;
+
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 14px;
+
+      border-radius: 12px;
+
+      border: 1px solid #444;
+
+      background: #111;
+
+      color: white;
+
+      outline: none;
+
+      font-size: 15px;
+
+      margin-bottom: 15px;
+
+      transition: .2s;
+    }
+
+    input::placeholder {
+      color: #666;
+    }
+
+    input:focus {
+      border-color: #ffd54a;
+
+      box-shadow:
+        0 0 12px rgba(255,213,74,.15);
+    }
+
+
+    /* ================= CREATE BUTTON ================= */
+
+    .create-btn {
+      width: 100%;
+
+      padding: 14px;
+
+      border: none;
+
+      border-radius: 11px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffd700,
+          #ffad00
+        );
+
+      color: #111;
+
+      font-weight: bold;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .create-btn:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 8px 20px
+        rgba(255,193,7,.2);
+    }
+
+    .create-btn:disabled {
+      opacity: .5;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+
+    /* ================= MESSAGE ================= */
+
+    .message {
+      display: none;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      margin-bottom: 15px;
+
+      font-size: 13px;
+    }
+
+    .success {
+      display: block;
+
+      color: #63f39a;
+
+      background:
+        rgba(0,255,100,.08);
+
+      border:
+        1px solid rgba(0,255,100,.2);
+    }
+
+    .error {
+      display: block;
+
+      color: #ff7070;
+
+      background:
+        rgba(255,0,0,.08);
+
+      border:
+        1px solid rgba(255,0,0,.2);
+    }
+
+
+    /* ================= SEARCH ================= */
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+
+      left: 14px;
+      top: 12px;
+
+      font-size: 18px;
+
+      pointer-events: none;
+    }
+
+    .search-box input {
+      padding-left: 43px;
+    }
+
+    .count {
+      color: #888;
+
+      font-size: 13px;
+
+      margin-bottom: 15px;
+    }
+
+
+    /* ================= USERS ================= */
+
+    .users {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 10px;
+
+      max-height: 520px;
+
+      overflow-y: auto;
+
+      padding-right: 4px;
+    }
+
+    .user {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+      padding: 15px;
+
+      border-radius: 13px;
+
+      background:
+        rgba(0,0,0,.35);
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
+      transition: .2s;
+    }
+
+    .user:hover {
+      border-color:
+        rgba(255,193,7,.25);
+
+      background:
+        rgba(255,193,7,.04);
+    }
+
+    .user-info {
+      min-width: 0;
+
+      flex: 1;
+    }
+
+    .email {
+      color: white;
+
+      font-weight: bold;
+
+      word-break: break-all;
+
+      font-size: 14px;
+    }
+
+    .status {
+      color: #5bea8d;
+
+      font-size: 12px;
+
+      margin-top: 5px;
+    }
+
+    .role {
+      color: #ffd54a;
+
+      font-size: 12px;
+
+      margin-top: 3px;
+    }
+
+
+    /* ================= DELETE ================= */
+
+    .delete-btn {
+      flex-shrink: 0;
+
+      padding: 8px 11px;
+
+      border-radius: 8px;
+
+      border:
+        1px solid #ff5555;
+
+      background: transparent;
+
+      color: #ff6b6b;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .delete-btn:hover {
+      background: #ff5555;
+
+      color: white;
+    }
+
+
+    /* ================= EMPTY ================= */
+
+    .empty {
+      text-align: center;
+
+      color: #777;
+
+      padding: 35px 10px;
+
+      line-height: 1.5;
+    }
+
+
+    /* ================= SCROLL ================= */
+
+    .users::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .users::-webkit-scrollbar-track {
+      background: #111;
+
+      border-radius: 10px;
+    }
+
+    .users::-webkit-scrollbar-thumb {
+      background: #555;
+
+      border-radius: 10px;
+    }
+
+
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .users {
+        max-height: 450px;
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 10px;
+      }
+
+      .header {
+        padding: 13px;
+
+        border-radius: 16px;
+
+        margin-bottom: 12px;
+      }
+
+      .header-left {
+        gap: 9px;
+      }
+
+      .header-logo {
+        width: 42px;
+        height: 42px;
+
+        min-width: 42px;
+
+        border-radius: 12px;
+
+        font-size: 21px;
+      }
+
+      .header h1 {
+        font-size: 16px;
+      }
+
+      .header p {
+        font-size: 10px;
+      }
+
+      .logout {
+        padding: 8px 10px;
+
+        font-size: 12px;
+      }
+
+      .grid {
+        gap: 12px;
+      }
+
+      .card {
+        padding: 17px;
+
+        border-radius: 16px;
+      }
+
+      .card h2 {
+        font-size: 17px;
+
+        margin-bottom: 16px;
+      }
+
+      label {
+        font-size: 12px;
+      }
+
+      input {
+        padding: 13px;
+
+        font-size: 14px;
+
+        margin-bottom: 13px;
+      }
+
+      .create-btn {
+        padding: 13px;
+
+        font-size: 14px;
+      }
+
+      .user {
+        padding: 12px;
+
+        gap: 8px;
+      }
+
+      .email {
+        font-size: 13px;
+      }
+
+      .status,
+      .role {
+        font-size: 11px;
+      }
+
+      .delete-btn {
+        padding: 7px 9px;
+
+        font-size: 12px;
+      }
+
+      .users {
+        max-height: 400px;
+      }
+    }
+
+
+    /* =====================================================
+       SMALL MOBILE
+    ===================================================== */
+
+    @media (max-width: 400px) {
+
+      .header {
+        align-items: flex-start;
+      }
+
+      .header-left {
+        max-width: 65%;
+      }
+
+      .header h1 {
+        font-size: 14px;
+      }
+
+      .header p {
+        font-size: 9px;
+      }
+
+      .logout {
+        font-size: 11px;
+
+        padding: 7px 9px;
+      }
+
+      .card {
+        padding: 14px;
+      }
+
+      .card h2 {
+        font-size: 16px;
+      }
+
+      .user {
+        align-items: flex-start;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       ADMIN PANEL
+  ===================================================== -->
+
+  <div id="adminPage">
+
+    <div class="container">
+
+
+      <!-- =================================================
+           HEADER
+      ================================================= -->
+
+      <div class="header">
+
+        <div class="header-left">
+
+          <div class="header-logo">
+            💎
+          </div>
+
+          <div>
+
+            <h1>
+              GOLD NOMERLAR
+            </h1>
+
+            <p>
+              ADMIN PANEL
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="logout"
+          id="logoutBtn"
+        >
+          Chiqish
+        </button>
+
+      </div>
+
+
+
+      <!-- =================================================
+           CONTENT
+      ================================================= -->
+
+      <div class="grid">
+
+
+        <!-- =================================================
+             CREATE USER
+        ================================================= -->
+
+        <div class="card">
+
+          <h2>
+            👤 Yangi foydalanuvchi
+          </h2>
+
+
+          <div
+            id="createMessage"
+            class="message"
+          ></div>
+
+
+          <form id="createUserForm">
+
+
+            <label>
+              Login / Email
+            </label>
+
+
+            <input
+              type="email"
+              id="userEmail"
+              placeholder="user@gmail.com"
+              autocomplete="off"
+              required
+            >
+
+
+            <label>
+              Parol
+            </label>
+
+
+            <input
+              type="password"
+              id="userPassword"
+              placeholder="Kamida 6 ta belgi"
+              minlength="6"
+              autocomplete="new-password"
+              required
+            >
+
+
+            <button
+              type="submit"
+              class="create-btn"
+              id="createBtn"
+            >
+              ➕ Foydalanuvchi yaratish
+            </button>
+
+
+          </form>
+
+        </div>
+<!-- =================================================
+     ADD SPIN
+================================================= -->
+
+<div class="card" style="margin-top:20px;">
+
+  <h2>
+    🎯 Popitka qo‘shish
+  </h2>
+
+  <div
+    id="spinMessage"
+    class="message"
+  ></div>
+
+  <form id="addSpinForm">
+
+    <label>
+      Account ID
+    </label>
+
+<input
+  type="text"
+  id="accountId"
+  placeholder="14 xonali Account ID"
+  maxlength="14"
+  inputmode="numeric"
+  autocomplete="off"
+  required
+>
+
+    <label>
+      Popitka soni
+    </label>
+
+    <input
+      type="number"
+      id="spinAmount"
+      placeholder="Masalan: 5"
+      min="1"
+      step="1"
+      required
+    >
+
+    <button
+      type="submit"
+      class="create-btn"
+      id="addSpinBtn"
+    >
+      🎯 Popitka qo‘shish
+    </button>
+
+  </form>
+
+</div>
+
+
+        <!-- =================================================
+             USERS
+        ================================================= -->
+
+        <div class="card">
+
+          <h2>
+            👥 Foydalanuvchilar
+          </h2>
+
+
+          <div class="search-box">
+
+            <span class="search-icon">
+              🔎
+            </span>
+
+
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Login yoki email qidiring..."
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <div
+            class="count"
+            id="userCount"
+          >
+            0 ta foydalanuvchi
+          </div>
+
+
+          <div
+            class="users"
+            id="usersList"
+          >
+
+            <div class="empty">
+              ⏳ Foydalanuvchilar yuklanmoqda...
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       FIREBASE
+  ===================================================== -->
+
+  <script type="module">
+
+/* =====================================================
+   FIREBASE IMPORT
+===================================================== */
+
+import {
+  initializeApp,
+  getApps,
+  getApp
+}
+from
+  "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signOut
+}
+from
+  "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  increment,
+  serverTimestamp,
+  query,
+  where
+}
+from
+  "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyAW4JRvs_gwVHM1R8NJqfpB_toYIIZjWl0",
+
+  authDomain:
+    "authapp-e44f9.firebaseapp.com",
+
+  projectId:
+    "authapp-e44f9",
+
+  storageBucket:
+    "authapp-e44f9.firebasestorage.app",
+
+  messagingSenderId:
+    "102646770113",
+
+  appId:
+    "1:102646770113:web:1eeb323aa47269ac0a6740"
+
+};
+
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
+const app =
+  initializeApp(firebaseConfig);
+
+const db =
+  getFirestore(app);
+
+
+/* =====================================================
+   USERS ARRAY
+===================================================== */
+
+let allUsers = [];
+
+
+/* =====================================================
+   GENERATE 14 DIGIT ACCOUNT ID
+===================================================== */
+
+function generateAccountId() {
+
+  let id = "";
+
+  for (let i = 0; i < 14; i++) {
+    id += Math.floor(Math.random() * 10);
+  }
+
+  return id;
+}
+
+
+/* =====================================================
+   LOAD USERS
+===================================================== */
+
+async function loadUsers() {
+
+  const usersList =
+    document.getElementById("usersList");
+
+  usersList.innerHTML = `
+    <div class="empty">
+      ⏳ Foydalanuvchilar yuklanmoqda...
+    </div>
+  `;
+
+  try {
+
+    const snapshot =
+      await getDocs(
+        collection(db, "users")
+      );
+
+    allUsers = [];
+
+    snapshot.forEach((item) => {
+
+      const data =
+        item.data();
+
+      allUsers.push({
+
+        uid:
+          item.id,
+accountId:
+  String(data.accountId || ""),
+        email:
+          data.email || "",
+
+        role:
+          String(data.role || "user")
+            .trim()
+            .toLowerCase(),
+
+        status:
+          data.status || "active",
+
+        freeSpins:
+          Number(data.freeSpins || 0),
+
+        extraSpins:
+          Number(data.extraSpins || 0)
+
+      });
+
+    });
+
+    renderUsers(allUsers);
+
+  } catch (error) {
+
+    console.error(
+      "LOAD USERS ERROR:",
+      error
+    );
+
+    usersList.innerHTML = `
+      <div class="empty">
+        ❌ Foydalanuvchilarni yuklab bo‘lmadi.
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDER USERS
+===================================================== */
+
+function renderUsers(list) {
+
+  const usersList =
+    document.getElementById("usersList");
+
+  const userCount =
+    document.getElementById("userCount");
+
+  usersList.innerHTML = "";
+
+  userCount.textContent =
+    list.length + " ta foydalanuvchi";
+
+
+  if (list.length === 0) {
+
+    usersList.innerHTML = `
+      <div class="empty">
+        🔎 Foydalanuvchi topilmadi
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  list.forEach((user) => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "user";
+
+
+    const totalSpins =
+      user.freeSpins +
+      user.extraSpins;
+
+
+    div.innerHTML = `
+
+      <div class="user-info">
+
+        <div class="email">
+
+          📧
+          ${escapeHTML(user.email)}
+
+        </div>
+
+        <div class="status">
+
+          🟢
+          ${escapeHTML(user.status)}
+
+        </div>
+
+        <div class="role">
+
+          ${
+            user.role === "admin" ||
+            user.role === "owner"
+
+              ? "👑 Admin"
+
+              : "👤 Foydalanuvchi"
+          }
+
+        </div>
+
+        <div
+          style="
+            color:#ffd54a;
+            font-size:12px;
+            margin-top:5px;
+          "
+        >
+
+          🎯 Popitka:
+          ${totalSpins}
+
+          ${
+            user.extraSpins > 0
+              ? `(+${user.extraSpins} qo‘shilgan)`
+              : ""
+          }
+
+        </div>
+
+        <div
+          style="
+            color:#777;
+            font-size:10px;
+            margin-top:4px;
+            word-break:break-all;
+          "
+        >
+Account ID: ${escapeHTML(user.accountId)}
+
+        </div>
+
+      </div>
+
+
+      ${
+        user.role !== "admin" &&
+        user.role !== "owner"
+
+        ? `
+
+          <button
+            class="delete-btn"
+            data-id="${escapeHTML(user.uid)}"
+          >
+            🗑️
+          </button>
+
+        `
+
+        : ""
+
+      }
+
+    `;
+
+
+    const deleteBtn =
+      div.querySelector(".delete-btn");
+
+
+    if (deleteBtn) {
+
+      deleteBtn.addEventListener(
+        "click",
+        () => deleteUser(user.uid)
+      );
+
+    }
+
+
+    usersList.appendChild(div);
+
+  });
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document
+  .getElementById("searchInput")
+  .addEventListener(
+    "input",
+    function() {
+
+      const search =
+        this.value
+          .toLowerCase()
+          .trim();
+
+
+   const filtered =
+  allUsers.filter((user) =>
+
+    user.email
+      .toLowerCase()
+      .includes(search)
+
+    ||
+
+    user.uid
+      .toLowerCase()
+      .includes(search)
+
+    ||
+
+    user.accountId
+      .toLowerCase()
+      .includes(search)
+
+);
+
+
+      renderUsers(filtered);
+
+    }
+  );
+
+
+/* =====================================================
+   CREATE USER
+===================================================== */
+
+const createForm =
+  document.getElementById(
+    "createUserForm"
+  );
+
+const createBtn =
+  document.getElementById(
+    "createBtn"
+  );
+
+const createMessage =
+  document.getElementById(
+    "createMessage"
+  );
+
+
+createForm.addEventListener(
+  "submit",
+  async function(e) {
+
+    e.preventDefault();
+
+
+    const email =
+      document
+        .getElementById("userEmail")
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById("userPassword")
+        .value;
+
+
+    createMessage.style.display =
+      "none";
+
+
+    if (!email) {
+
+      showCreateMessage(
+        "❌ Email kiriting.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if (password.length < 6) {
+
+      showCreateMessage(
+        "❌ Parol kamida 6 ta belgi bo‘lishi kerak.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    createBtn.disabled =
+      true;
+
+    createBtn.textContent =
+      "⏳ Yaratilmoqda...";
+
+
+    try {
+
+      /* =================================================
+         SECONDARY APP
+      ================================================= */
+
+      let secondaryApp;
+
+      const apps =
+        getApps();
+
+
+      const exists =
+        apps.some(
+          (item) =>
+            item.name === "userCreator"
+        );
+
+
+      if (exists) {
+
+        secondaryApp =
+          getApp("userCreator");
+
+      } else {
+
+        secondaryApp =
+          initializeApp(
+            firebaseConfig,
+            "userCreator"
+          );
+
+      }
+
+
+      const secondaryAuth =
+        getAuth(secondaryApp);
+
+
+      /* =================================================
+         CREATE AUTH USER
+      ================================================= */
+
+      const result =
+        await createUserWithEmailAndPassword(
+          secondaryAuth,
+          email,
+          password
+        );
+
+
+      const uid =
+        result.user.uid;
+
+
+      console.log(
+        "YANGI USER UID:",
+        uid
+      );
+
+
+      /* =================================================
+         CREATE FIRESTORE PROFILE
+      ================================================= */
+/* =================================================
+   GENERATE ACCOUNT ID
+================================================= */
+
+const accountId =
+  generateAccountId();
+
+
+console.log(
+  "YANGI ACCOUNT ID:",
+  accountId
+);
+
+
+/* =================================================
+   CREATE FIRESTORE PROFILE
+================================================= */
+
+await setDoc(
+
+  doc(
+    db,
+    "users",
+    uid
+  ),
+
+  {
+
+    email:
+      email,
+
+    /* 14 XONALI ACCOUNT ID */
+    accountId:
+      accountId,
+
+    role:
+      "user",
+
+    status:
+      "active",
+
+    coins:
+      0,
+
+    level:
+      1,
+
+    freeSpins:
+      1,
+
+    extraSpins:
+      0,
+
+    createdAt:
+      serverTimestamp()
+
+  }
+
+);
+
+
+      /* =================================================
+         SECONDARY LOGOUT
+      ================================================= */
+
+      await signOut(
+        secondaryAuth
+      );
+
+
+      /* =================================================
+         SUCCESS
+      ================================================= */
+
+showCreateMessage(
+
+  `✅ Foydalanuvchi yaratildi! Account ID: ${accountId}`,
+
+  "success"
+
+);
+
+
+      createForm.reset();
+
+
+      await loadUsers();
+
+
+    } catch (error) {
+
+      console.error(
+        "CREATE USER ERROR:",
+        error
+      );
+
+
+      let text =
+        "❌ Foydalanuvchi yaratishda xatolik.";
+
+
+      if (
+        error.code ===
+        "auth/email-already-in-use"
+      ) {
+
+        text =
+          "❌ Bu email allaqachon mavjud.";
+
+      }
+
+      else if (
+        error.code ===
+        "auth/invalid-email"
+      ) {
+
+        text =
+          "❌ Email noto‘g‘ri.";
+
+      }
+
+      else if (
+        error.code ===
+        "auth/weak-password"
+      ) {
+
+        text =
+          "❌ Parol juda kuchsiz.";
+
+      }
+
+      else if (
+        error.code ===
+        "auth/network-request-failed"
+      ) {
+
+        text =
+          "❌ Internet bilan bog‘lanishda xatolik.";
+
+      }
+
+      else if (
+        error.code ===
+        "permission-denied"
+      ) {
+
+        text =
+          "❌ Firestore Rules ruxsat bermayapti.";
+
+      }
+
+      else {
+
+        text +=
+          " " + error.message;
+
+      }
+
+
+      showCreateMessage(
+        text,
+        "error"
+      );
+
+
+    } finally {
+
+      createBtn.disabled =
+        false;
+
+      createBtn.textContent =
+        "➕ Foydalanuvchi yaratish";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   ADD SPIN
+===================================================== */
+
+/* =====================================================
+   ADD SPIN
+===================================================== */
+
+const addSpinForm =
+  document.getElementById("addSpinForm");
+
+const addSpinBtn =
+  document.getElementById("addSpinBtn");
+
+const spinMessage =
+  document.getElementById("spinMessage");
+
+
+addSpinForm.addEventListener(
+  "submit",
+  async function(e) {
+
+    e.preventDefault();
+
+    const accountId =
+      document
+        .getElementById("accountId")
+        .value
+        .trim();
+
+    const amount =
+      Number(
+        document
+          .getElementById("spinAmount")
+          .value
+      );
+
+    spinMessage.style.display = "none";
+
+
+    /* =========================
+       ACCOUNT ID TEKSHIRISH
+    ========================= */
+
+    if (!/^\d{14}$/.test(accountId)) {
+
+      showSpinMessage(
+        "❌ Account ID aynan 14 xonali raqam bo‘lishi kerak.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    /* =========================
+       POPITKA TEKSHIRISH
+    ========================= */
+
+    if (
+      !Number.isInteger(amount) ||
+      amount < 1
+    ) {
+
+      showSpinMessage(
+        "❌ Popitka soni 1 yoki undan ko‘p bo‘lishi kerak.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    addSpinBtn.disabled = true;
+
+    addSpinBtn.textContent =
+      "⏳ Qo‘shilmoqda...";
+
+
+    try {
+
+      /* =========================
+         ACCOUNT ID BO‘YICHA USER TOPISH
+      ========================= */
+
+      const usersRef =
+        collection(db, "users");
+
+
+      const q =
+        query(
+          usersRef,
+          where("accountId", "==", accountId)
+        );
+
+
+      const snapshot =
+        await getDocs(q);
+
+
+      /* =========================
+         USER TOPILMADI
+      ========================= */
+
+      if (snapshot.empty) {
+
+        showSpinMessage(
+          "❌ Bu Account ID topilmadi.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      /* =========================
+         USER
+      ========================= */
+
+      const userDoc =
+        snapshot.docs[0];
+
+      const userRef =
+        userDoc.ref;
+
+
+      /* =========================
+         POPITKA QO‘SHISH
+      ========================= */
+
+      await updateDoc(
+        userRef,
+        {
+          extraSpins:
+            increment(amount)
+        }
+      );
+
+
+      /* =========================
+         SUCCESS
+      ========================= */
+
+      showSpinMessage(
+
+        `✅ ${amount} ta popitka qo‘shildi!`,
+
+        "success"
+
+      );
+
+
+      /* =========================
+         INPUT TOZALASH
+      ========================= */
+
+      document
+        .getElementById("accountId")
+        .value = "";
+
+      document
+        .getElementById("spinAmount")
+        .value = "";
+
+
+      /* =========================
+         USERLARNI YANGILASH
+      ========================= */
+
+      await loadUsers();
+
+
+    } catch (error) {
+
+      console.error(
+        "ADD SPIN ERROR:",
+        error
+      );
+
+
+      showSpinMessage(
+
+        "❌ Popitka qo‘shishda xatolik: " +
+        error.message,
+
+        "error"
+
+      );
+
+
+    } finally {
+
+      addSpinBtn.disabled = false;
+
+      addSpinBtn.textContent =
+        "🎯 Popitka qo‘shish";
+
+    }
+
+  }
+);
+
+/* =====================================================
+   DELETE USER
+===================================================== */
+
+async function deleteUser(uid) {
+
+  const user =
+    allUsers.find(
+      item =>
+        item.uid === uid
+    );
+
+
+  if (!user)
+    return;
+
+
+  const confirmDelete =
+    confirm(
+
+      user.email +
+      " foydalanuvchisini o‘chirishni xohlaysizmi?"
+
+    );
+
+
+  if (!confirmDelete)
+    return;
+
+
+  try {
+
+    await deleteDoc(
+
+      doc(
+        db,
+        "users",
+        uid
+      )
+
+    );
+
+
+    await loadUsers();
+
+
+  } catch (error) {
+
+    console.error(
+      "DELETE ERROR:",
+      error
+    );
+
+
+    alert(
+      "❌ O‘chirishda xatolik: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CREATE MESSAGE
+===================================================== */
+
+function showCreateMessage(
+  text,
+  type
+) {
+
+  createMessage.textContent =
+    text;
+
+  createMessage.className =
+    "message " + type;
+
+  createMessage.style.display =
+    "block";
+
+
+  setTimeout(
+    () => {
+
+      createMessage.style.display =
+        "none";
+
+    },
+    4000
+  );
+
+}
+
+
+/* =====================================================
+   SPIN MESSAGE
+===================================================== */
+
+function showSpinMessage(
+  text,
+  type
+) {
+
+  spinMessage.textContent =
+    text;
+
+  spinMessage.className =
+    "message " + type;
+
+  spinMessage.style.display =
+    "block";
+
+
+  setTimeout(
+    () => {
+
+      spinMessage.style.display =
+        "none";
+
+    },
+    4000
+  );
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+  .getElementById("logoutBtn")
+  .addEventListener(
+    "click",
+    async function() {
+
+      try {
+
+        const mainAuth =
+          getAuth(app);
+
+        await signOut(mainAuth);
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
+      window.location.href =
+        "./index.html";
+
+    }
+  );
+
+
+/* =====================================================
+   SAFE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+  return String(text)
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadUsers();
+
+</script>
+
+</body>
+</html>

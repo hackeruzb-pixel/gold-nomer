@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Gold Nomerlar | Profilim</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(245,197,66,.12), transparent 35%),
+        #080808;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .loading {
+      position: fixed;
+      inset: 0;
+      background: #080808;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(245,197,66,.2);
+      border-top-color: #f5c542;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      color: #f5c542;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .page {
+      display: none;
+      max-width: 850px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(245,197,66,.25);
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      color: #f5c542;
+      cursor: pointer;
+      font-size: 20px;
+      transition: .2s;
+    }
+
+    .back-btn:hover {
+      background: rgba(245,197,66,.1);
+      transform: translateY(-2px);
+    }
+
+    .top-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #f5c542;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid rgba(245,197,66,.25);
+      border-radius: 25px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(245,197,66,.10),
+          rgba(255,255,255,.025)
+        );
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(245,197,66,.10);
+      border-radius: 50%;
+      filter: blur(50px);
+      top: -90px;
+      left: -50px;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      margin: auto;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(145deg,#f5c542,#9c6d00);
+      color: #111;
+      font-size: 36px;
+      font-weight: 900;
+      box-shadow: 0 0 35px rgba(245,197,66,.25);
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile-title {
+      margin-top: 16px;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .profile-email {
+      margin-top: 7px;
+      color: #aaa;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    .role-badge {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 7px 13px;
+      border-radius: 30px;
+      background: rgba(245,197,66,.12);
+      color: #f5c542;
+      border: 1px solid rgba(245,197,66,.25);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .box {
+      margin-top: 20px;
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .box-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 18px;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 15px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .info-label {
+      color: #999;
+      font-size: 13px;
+    }
+
+    .info-value {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    .gold {
+      color: #f5c542 !important;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 18px 10px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.07);
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #999;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 23px;
+      font-weight: 900;
+      color: #f5c542;
+    }
+
+    .wallet {
+      padding: 25px;
+      text-align: center;
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(245,197,66,.12),
+          rgba(245,197,66,.035)
+        );
+      border: 1px solid rgba(245,197,66,.2);
+    }
+
+    .wallet-label {
+      color: #aaa;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .wallet-value {
+      color: #f5c542;
+      font-size: 38px;
+      font-weight: 900;
+    }
+
+    .wallet-sub {
+      color: #777;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+
+    .prize-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .prize-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 15px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .prize-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 14px;
+      background: rgba(245,197,66,.10);
+      font-size: 25px;
+    }
+
+    .prize-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .prize-name {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .prize-date {
+      margin-top: 5px;
+      color: #777;
+      font-size: 11px;
+    }
+
+    .prize-badge {
+      padding: 6px 9px;
+      border-radius: 9px;
+      background: rgba(245,197,66,.1);
+      color: #f5c542;
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .empty-prizes {
+      padding: 25px 10px;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .error-box {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255,60,60,.08);
+      border: 1px solid rgba(255,60,60,.25);
+      color: #ff8080;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+      padding-bottom: 30px;
+    }
+
+    .main-btn {
+      border: none;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    .home-btn {
+      background: linear-gradient(135deg,#f5c542,#b98000);
+      color: #111;
+    }
+
+    .logout-btn {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      color: #fff;
+    }
+
+    .main-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 650px) {
+      .page {
+        padding: 12px;
+      }
+
+      .hero {
+        padding: 25px 15px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .box {
+        padding: 17px;
+      }
+
+      .wallet-value {
+        font-size: 32px;
+      }
+
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-title {
+        font-size: 23px;
+      }
+
+      .prize-card {
+        align-items: flex-start;
+      }
+
+      .prize-badge {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOADING -->
+  <div class="loading" id="loading">
+    <div class="loader"></div>
+    <div class="loading-text">Profil yuklanmoqda...</div>
+  </div>
+
+  <main class="page" id="page">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <button class="back-btn" id="backBtn">←</button>
+
+      <div class="top-title">
+        GOLD NOMERLAR
+      </div>
+
+      <div style="width:44px;"></div>
+    </div>
+
+    <!-- ERROR -->
+    <div class="error-box" id="errorBox">
+      <b>Xatolik yuz berdi!</b>
+      <div id="errorText"></div>
+    </div>
+
+    <!-- PROFILE HERO -->
+    <section class="hero">
+
+      <div class="avatar" id="avatar">
+        U
+      </div>
+
+      <div class="profile-title" id="profileTitle">
+        Profilim
+      </div>
+
+      <div class="profile-email" id="profileEmail">
+        Yuklanmoqda...
+      </div>
+
+      <div class="role-badge" id="roleBadge">
+        USER
+      </div>
+
+    </section>
+
+    <!-- ACCOUNT -->
+    <section class="box">
+
+      <h2 class="box-title">
+        <span>👤</span>
+        Account
+      </h2>
+
+      <div class="info-list">
+
+        <div class="info-row">
+          <div class="info-label">
+            Email
+          </div>
+
+          <div class="info-value" id="email">
+            -
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">
+            Role
+          </div>
+
+          <div class="info-value gold" id="role">
+            -
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">
+            Level
+          </div>
+
+          <div class="info-value gold" id="accountLevel">
+            1
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">
+            Account ID
+          </div>
+
+          <div class="info-value gold" id="uid">
+            -
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- OMAD BARABANI -->
+    <section class="box">
+
+      <h2 class="box-title">
+        <span>🎡</span>
+        OMAD BARABANI
+      </h2>
+
+      <div class="wallet">
+
+        <div class="wallet-label">
+          JAMI POPITKA
+        </div>
+
+        <div class="wallet-value" id="balance">
+          0
+        </div>
+
+        <div class="wallet-sub">
+          Omad barabanida aylantirish imkoniyati
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- STATS -->
+    <section class="box">
+
+      <h2 class="box-title">
+        <span>📊</span>
+        Statistikam
+      </h2>
+
+      <div class="stats">
+
+        <div class="stat">
+
+          <div class="stat-label">
+            POPITKA
+          </div>
+
+          <div class="stat-value" id="spinCount">
+            0
+          </div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="stat-label">
+            YUTUQLAR
+          </div>
+
+          <div class="stat-value" id="prizeCount">
+            0
+          </div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="stat-label">
+            BEPUL
+          </div>
+
+          <div class="stat-value" id="freeSpins">
+            0
+          </div>
+
+        </div>
+
+        <div class="stat">
+
+          <div class="stat-label">
+            QO‘SHIMCHA
+          </div>
+
+          <div class="stat-value" id="extraSpins">
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MY PRIZES -->
+    <section class="box">
+
+      <h2 class="box-title">
+        <span>🏆</span>
+        Mening yutuqlarim
+      </h2>
+
+      <div id="profilePrizes">
+
+        <div class="empty-prizes">
+          Yutuqlar yuklanmoqda...
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BUTTONS -->
+    <div class="buttons">
+
+      <button
+        class="main-btn home-btn"
+        id="homeBtn"
+      >
+        🎡 Omad Barabaniga
+      </button>
+
+      <button
+        class="main-btn logout-btn"
+        id="logoutBtn"
+      >
+        🚪 Chiqish
+      </button>
+
+    </div>
+
+  </main>
+
+
+  <!-- FIREBASE -->
+  <script type="module">
+
+    import {
+      initializeApp,
+      getApps,
+      getApp
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      setDoc,
+      collection,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+    /* =========================
+       FIREBASE CONFIG
+    ========================= */
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyAW4JRvs_gwVHM1R8NJqfpB_toYIIZjWl0",
+
+      authDomain:
+        "authapp-e44f9.firebaseapp.com",
+
+      projectId:
+        "authapp-e44f9",
+
+      storageBucket:
+        "authapp-e44f9.firebasestorage.app",
+
+      messagingSenderId:
+        "102646770113",
+
+      appId:
+        "1:102646770113:web:1eeb323aa47269ac0a6740",
+
+      measurementId:
+        "G-YND4R4909"
+
+    };
+
+
+    /* =========================
+       FIREBASE INIT
+    ========================= */
+
+    const app =
+      getApps().length
+        ? getApp()
+        : initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+
+    /* =========================
+       14 XONALI ACCOUNT ID
+    ========================= */
+
+    function generateAccountId() {
+
+      let id = "";
+
+      for (let i = 0; i < 14; i++) {
+
+        id += Math.floor(
+          Math.random() * 10
+        );
+
+      }
+
+      return id;
+
+    }
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const loading =
+      document.getElementById("loading");
+
+    const page =
+      document.getElementById("page");
+
+    const errorBox =
+      document.getElementById("errorBox");
+
+    const errorText =
+      document.getElementById("errorText");
+
+    const profileTitle =
+      document.getElementById("profileTitle");
+
+    const profileEmail =
+      document.getElementById("profileEmail");
+
+    const email =
+      document.getElementById("email");
+
+    const uid =
+      document.getElementById("uid");
+
+    const role =
+      document.getElementById("role");
+
+    const accountLevel =
+      document.getElementById("accountLevel");
+
+    const balance =
+      document.getElementById("balance");
+
+    const roleBadge =
+      document.getElementById("roleBadge");
+
+    const avatar =
+      document.getElementById("avatar");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+    const homeBtn =
+      document.getElementById("homeBtn");
+
+    const backBtn =
+      document.getElementById("backBtn");
+
+    const spinCount =
+      document.getElementById("spinCount");
+
+    const freeSpinsEl =
+      document.getElementById("freeSpins");
+
+    const extraSpinsEl =
+      document.getElementById("extraSpins");
+
+    const prizeCount =
+      document.getElementById("prizeCount");
+
+    const profilePrizes =
+      document.getElementById("profilePrizes");
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    function showError(message) {
+
+      errorBox.style.display =
+        "block";
+
+      errorText.textContent =
+        message;
+
+    }
+
+
+    /* =========================
+       DATE FORMAT
+    ========================= */
+
+    function formatDate(timestamp) {
+
+      if (!timestamp) {
+
+        return "Sana mavjud emas";
+
+      }
+
+      try {
+
+        const date =
+          timestamp.toDate
+            ? timestamp.toDate()
+            : new Date(timestamp);
+
+        return date.toLocaleString(
+          "uz-UZ",
+          {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+          }
+        );
+
+      } catch (error) {
+
+        return "Sana mavjud emas";
+
+      }
+
+    }
+
+
+    /* =========================
+       LOAD MY PRIZES
+    ========================= */
+
+    async function loadMyPrizes(userId) {
+
+      try {
+
+        const q = query(
+          collection(db, "prizes"),
+          where(
+            "userId",
+            "==",
+            userId
+          )
+        );
+
+        const snapshot =
+          await getDocs(q);
+
+        const prizes = [];
+
+        snapshot.forEach(
+          (docSnap) => {
+
+            prizes.push({
+              id: docSnap.id,
+              ...docSnap.data()
+            });
+
+          }
+        );
+
+
+        /* NEWEST FIRST */
+
+        prizes.sort(
+          (a, b) => {
+
+            const aTime =
+              a.createdAt?.toMillis
+                ? a.createdAt.toMillis()
+                : 0;
+
+            const bTime =
+              b.createdAt?.toMillis
+                ? b.createdAt.toMillis()
+                : 0;
+
+            return bTime - aTime;
+
+          }
+        );
+
+
+        /* COUNT */
+
+        prizeCount.textContent =
+          prizes.length;
+
+
+        /* EMPTY */
+
+        if (prizes.length === 0) {
+
+          profilePrizes.innerHTML = `
+            <div class="empty-prizes">
+              🏆 Hali yutuqlaringiz yo‘q
+            </div>
+          `;
+
+          return;
+
+        }
+
+
+        /* RENDER */
+
+        profilePrizes.innerHTML = `
+          <div class="prize-list">
+
+            ${prizes.map(
+              (prize) => {
+
+                let badge = "";
+
+                if (
+                  prize.type === "discount" &&
+                  prize.discount
+                ) {
+
+                  badge =
+                    `${prize.discount}% CHEGIRMA`;
+
+                }
+
+                else if (
+                  prize.type === "jackpot"
+                ) {
+
+                  badge =
+                    "JACKPOT";
+
+                }
+
+                else if (
+                  prize.type === "none"
+                ) {
+
+                  badge =
+                    "YUTUQSIZ";
+
+                }
+
+                else {
+
+                  badge =
+                    "YUTUQ";
+
+                }
+
+
+                return `
+
+                  <div class="prize-card">
+
+                    <div class="prize-icon">
+                      ${prize.icon || "🏆"}
+                    </div>
+
+                    <div class="prize-info">
+
+                      <div class="prize-name">
+                        ${prize.name || "Noma'lum yutuq"}
+                      </div>
+
+                      <div class="prize-date">
+                        ${formatDate(prize.createdAt)}
+                      </div>
+
+                    </div>
+
+                    <div class="prize-badge">
+                      ${badge}
+                    </div>
+
+                  </div>
+
+                `;
+
+              }
+            ).join("")}
+
+          </div>
+        `;
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Yutuqlarni yuklash xatosi:",
+          error
+        );
+
+        profilePrizes.innerHTML = `
+          <div class="empty-prizes">
+            ⚠️ Yutuqlarni yuklab bo‘lmadi
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    /* =========================
+       LOAD PROFILE
+    ========================= */
+
+    async function loadProfile(user) {
+
+      try {
+
+        errorBox.style.display =
+          "none";
+
+
+        /* USER DOCUMENT */
+
+        const userRef =
+          doc(
+            db,
+            "users",
+            user.uid
+          );
+
+        const userSnap =
+          await getDoc(userRef);
+
+
+        /* USER DATA */
+
+        let userData = {};
+
+        if (userSnap.exists()) {
+
+          userData =
+            userSnap.data();
+
+        }
+
+
+        /* =========================
+           14 XONALI ACCOUNT ID
+        ========================= */
+
+        let accountId =
+          userData.accountId;
+
+
+        if (
+          !accountId ||
+          String(accountId).length !== 14
+        ) {
+
+          accountId =
+            generateAccountId();
+
+
+          await setDoc(
+            userRef,
+            {
+              accountId:
+                accountId
+            },
+            {
+              merge: true
+            }
+          );
+
+        }
+
+
+        /* =========================
+           DATA
+        ========================= */
+
+        const userRole =
+          userData.role || "user";
+
+        const userLevel =
+          Number(
+            userData.level ?? 1
+          );
+
+        let freeSpins =
+          Number(
+            userData.freeSpins ?? 0
+          );
+
+        let extraSpins =
+          Number(
+            userData.extraSpins ?? 0
+          );
+
+
+        if (freeSpins < 0) {
+
+          freeSpins = 0;
+
+        }
+
+        if (extraSpins < 0) {
+
+          extraSpins = 0;
+
+        }
+
+
+        const remainingSpins =
+          freeSpins +
+          extraSpins;
+
+
+        /* =========================
+           PROFILE INFO
+        ========================= */
+
+        profileTitle.textContent =
+          "Profilim";
+
+        profileEmail.textContent =
+          user.email ||
+          "Email mavjud emas";
+
+        email.textContent =
+          user.email || "-";
+
+
+        /* ACCOUNT ID */
+
+        uid.textContent =
+          accountId;
+
+
+        role.textContent =
+          userRole.toUpperCase();
+
+        accountLevel.textContent =
+          userLevel;
+
+
+        /* =========================
+           AVATAR
+        ========================= */
+
+        let avatarLetter =
+          "U";
+
+        if (user.email) {
+
+          avatarLetter =
+            user.email
+              .charAt(0)
+              .toUpperCase();
+
+        }
+
+        avatar.textContent =
+          avatarLetter;
+
+
+        /* =========================
+           SPINS
+        ========================= */
+
+        balance.textContent =
+          remainingSpins;
+
+        spinCount.textContent =
+          remainingSpins;
+
+        freeSpinsEl.textContent =
+          freeSpins;
+
+        extraSpinsEl.textContent =
+          extraSpins;
+
+
+        /* =========================
+           ROLE
+        ========================= */
+
+        if (
+          userRole.toLowerCase() ===
+            "owner" ||
+          userRole.toLowerCase() ===
+            "admin"
+        ) {
+
+          roleBadge.textContent =
+            "👑 OWNER";
+
+          roleBadge.style.color =
+            "#f5c542";
+
+          roleBadge.style.background =
+            "rgba(245,197,66,.12)";
+
+          roleBadge.style.borderColor =
+            "rgba(245,197,66,.3)";
+
+        }
+
+        else if (
+          userRole.toLowerCase() ===
+          "vip"
+        ) {
+
+          roleBadge.textContent =
+            "💎 VIP";
+
+          roleBadge.style.color =
+            "#f472b6";
+
+          roleBadge.style.background =
+            "rgba(244,114,182,.10)";
+
+          roleBadge.style.borderColor =
+            "rgba(244,114,182,.25)";
+
+        }
+
+        else {
+
+          roleBadge.textContent =
+            "👤 USER";
+
+        }
+
+
+        /* =========================
+           LOAD PRIZES
+        ========================= */
+
+        await loadMyPrizes(
+          user.uid
+        );
+
+
+        /* =========================
+           SHOW PAGE
+        ========================= */
+
+        loading.style.display =
+          "none";
+
+        page.style.display =
+          "block";
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Profil xatosi:",
+          error
+        );
+
+        loading.style.display =
+          "none";
+
+        page.style.display =
+          "block";
+
+        showError(
+          error.message ||
+          "Profilni yuklashda xatolik yuz berdi."
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       AUTH STATE
+    ========================= */
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.href =
+            "index.html";
+
+          return;
+
+        }
+
+        await loadProfile(user);
+
+      }
+    );
+
+
+    /* =========================
+       HOME BUTTON
+    ========================= */
+
+    homeBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "spin.html";
+
+      }
+    );
+
+
+    /* =========================
+       BACK BUTTON
+    ========================= */
+
+    backBtn.addEventListener(
+      "click",
+      () => {
+
+        window.location.href =
+          "spin.html";
+
+      }
+    );
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    logoutBtn.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          logoutBtn.disabled =
+            true;
+
+          logoutBtn.textContent =
+            "⏳ Chiqilmoqda...";
+
+          await signOut(auth);
+
+          window.location.href =
+            "index.html";
+
+        }
+
+        catch (error) {
+
+          console.error(
+            "Logout xatosi:",
+            error
+          );
+
+          logoutBtn.disabled =
+            false;
+
+          logoutBtn.textContent =
+            "🚪 Chiqish";
+
+          showError(
+            "Tizimdan chiqishda xatolik yuz berdi."
+          );
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>

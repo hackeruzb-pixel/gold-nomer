@@ -1,0 +1,3677 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GOLD NOMERLAR — Omad Barabani</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --gold:#ffd84d;
+    --gold2:#ff9d00;
+    --yellow:#fff2a6;
+    --purple:#8b5cf6;
+    --pink:#ec4899;
+    --cyan:#22d3ee;
+    --green:#22c55e;
+    --red:#ef4444;
+    --bg:#05060d;
+    --card:#10121f;
+    --muted:#969bb5;
+    --white:#ffffff;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:"Montserrat",sans-serif;
+    color:white;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(139,92,246,.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(255,216,77,.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(34,211,238,.08),
+            transparent 35%
+        ),
+        #05060d;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.bg-light{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(130px);
+    pointer-events:none;
+    z-index:-2;
+}
+
+.bg-light.one{
+    background:#7c3aed;
+    opacity:.08;
+    left:-250px;
+    top:200px;
+}
+
+.bg-light.two{
+    background:#f59e0b;
+    opacity:.06;
+    right:-250px;
+    top:500px;
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:white;
+    opacity:.3;
+    animation:twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.15;
+        transform:scale(.6);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    width:min(1150px,92%);
+    margin:auto;
+    padding:28px 0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:var(--gold);
+    text-shadow:
+        0 0 10px rgba(255,216,77,.6),
+        0 0 30px rgba(255,216,77,.25);
+}
+
+.online{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:9px 14px;
+
+    border-radius:50px;
+    border:1px solid rgba(34,197,94,.25);
+    background:rgba(34,197,94,.07);
+
+    color:#86efac;
+    font-size:10px;
+    font-weight:800;
+}
+
+.online-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#22c55e;
+    box-shadow:0 0 12px #22c55e;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    width:min(1000px,92%);
+    margin:40px auto 35px;
+    text-align:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 18px;
+
+    border-radius:100px;
+
+    border:1px solid rgba(255,216,77,.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,216,77,.10),
+            rgba(255,159,28,.03)
+        );
+
+    color:var(--gold);
+    font-size:11px;
+    font-weight:800;
+
+    box-shadow:
+        0 0 30px rgba(255,216,77,.06);
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(38px,7vw,76px);
+    line-height:.98;
+    font-weight:900;
+    letter-spacing:-4px;
+}
+
+.gradient-text{
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffd84d,
+            #ff9d00,
+            #fff2a6,
+            #fff
+        );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    animation:textShine 5s linear infinite;
+}
+
+@keyframes textShine{
+    from{
+        background-position:0%;
+    }
+
+    to{
+        background-position:300%;
+    }
+}
+
+.hero p{
+    max-width:650px;
+    margin:22px auto 0;
+
+    color:var(--muted);
+
+    line-height:1.7;
+    font-size:14px;
+}
+
+/* =========================
+   GAME CARD
+========================= */
+
+.game-card{
+    width:min(850px,94%);
+    margin:auto;
+
+    padding:35px 20px 40px;
+
+    position:relative;
+
+    border-radius:38px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.5),
+        inset 0 1px rgba(255,255,255,.08);
+
+    backdrop-filter:blur(30px);
+
+    overflow:hidden;
+}
+
+.game-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    left:-200px;
+    top:-200px;
+
+    background:#8b5cf6;
+
+    filter:blur(130px);
+
+    opacity:.16;
+}
+
+.game-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    right:-180px;
+    bottom:-180px;
+
+    background:#ff9d00;
+
+    filter:blur(130px);
+
+    opacity:.10;
+}
+
+.game-heading{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+
+    margin-bottom:28px;
+}
+
+.game-heading h2{
+    font-size:25px;
+    font-weight:900;
+}
+
+.game-heading p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:7px;
+}
+
+/* =========================
+   JACKPOT BANNER
+========================= */
+
+.jackpot{
+    width:min(600px,95%);
+    margin:0 auto 30px;
+
+    position:relative;
+    z-index:2;
+
+    padding:13px 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,216,77,.35);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,216,77,.04),
+            rgba(255,216,77,.13),
+            rgba(255,216,77,.04)
+        );
+
+    box-shadow:
+        0 0 30px rgba(255,216,77,.07);
+
+    color:var(--gold);
+    font-size:12px;
+    font-weight:900;
+
+    animation:jackpotPulse 2s ease-in-out infinite;
+}
+
+@keyframes jackpotPulse{
+    0%,100%{
+        box-shadow:0 0 20px rgba(255,216,77,.04);
+    }
+
+    50%{
+        box-shadow:0 0 35px rgba(255,216,77,.15);
+    }
+}
+
+/* =========================
+   WHEEL
+========================= */
+
+.wheel-wrapper{
+    width:min(530px,92vw);
+    aspect-ratio:1;
+
+    margin:auto;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.wheel-shadow{
+    position:absolute;
+
+    inset:7%;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd84d,
+            #8b5cf6,
+            #ec4899,
+            #22d3ee,
+            #ffd84d
+        );
+
+    filter:blur(38px);
+
+    opacity:.25;
+}
+
+.wheel-outer{
+    position:absolute;
+    inset:0;
+
+    border-radius:50%;
+
+    padding:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8c4 0%,
+            #ffd84d 20%,
+            #ff9d00 40%,
+            #fff 55%,
+            #8b5cf6 75%,
+            #ffd84d 100%
+        );
+
+    box-shadow:
+        0 0 45px rgba(255,216,77,.25),
+        0 30px 70px rgba(0,0,0,.65);
+}
+
+.wheel-border{
+    position:absolute;
+    inset:6px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(255,255,255,.25);
+
+    z-index:4;
+
+    pointer-events:none;
+}
+
+.wheel{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        conic-gradient(
+            from -25.7143deg,
+            #d97706 0deg 51.4286deg,
+            #7c3aed 51.4286deg 102.8571deg,
+            #0891b2 102.8571deg 154.2857deg,
+            #dc2626 154.2857deg 205.7143deg,
+            #16a34a 205.7143deg 257.1429deg,
+            #db2777 257.1429deg 308.5714deg,
+            #475569 308.5714deg 360deg
+        );
+
+    transition:
+        transform 5.5s cubic-bezier(.12,.78,.14,1);
+
+    box-shadow:
+        inset 0 0 45px rgba(0,0,0,.45);
+}
+
+/* Wheel shine */
+
+.wheel::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(255,255,255,.25),
+            transparent 25%,
+            transparent 65%,
+            rgba(255,255,255,.08)
+        );
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+.wheel::after{
+    content:"";
+
+    position:absolute;
+    inset:2%;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+/* =========================
+   SEGMENTS
+========================= */
+
+   /* =========================
+   SEGMENTS
+========================= */
+
+.segment {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 48%;
+    height: 70px;
+    margin-top: -35px;
+
+    transform-origin: 0 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-left: 20px;
+    padding-right: 8px;
+
+    text-align: center;
+
+    font-size: 24px;
+    line-height: 1.15;
+    font-weight: 900;
+
+    white-space: normal;
+
+    z-index: 10;
+    pointer-events: none;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 8px rgba(0,0,0,.6);
+}
+
+/* 🟠 20% SKIDKA */
+.seg1 {
+    transform: rotate(0deg);
+    color: #fff8c4;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 10px rgba(217,119,6,.9);
+}
+
+/* 🟣 10% SKIDKA */
+.seg2 {
+    transform: rotate(51.4286deg);
+    color: #f5eaff;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 10px rgba(124,58,237,.9);
+}
+
+/* 🔵 YUTUQSIZ */
+.seg3 {
+    transform: rotate(102.8571deg);
+    color: #e5fbff;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 10px rgba(8,145,178,.9);
+}
+
+/* 🔴 300 000 SO‘MLIK NOMER */
+.seg4 {
+    transform: rotate(154.2857deg);
+    color: #ffe7e7;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 10px rgba(220,38,38,.95);
+}
+
+/* 🟢 70% SKIDKA */
+.seg5 {
+    transform: rotate(205.7143deg);
+    color: #eaffed;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 10px rgba(22,163,74,.95);
+}
+
+/* 🌸 50% SKIDKA */
+.seg6 {
+    transform: rotate(257.1429deg);
+    color: #ffe9f4;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 10px rgba(219,39,119,.95);
+}
+
+/* ⚡ 30% SKIDKA */
+.seg7 {
+    transform: rotate(308.5714deg);
+    color: #f1f5f9;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.95),
+        0 0 10px rgba(71,85,105,.95);
+}
+/* =========================
+   POINTER
+========================= */
+
+.pointer{
+    position:absolute;
+
+    z-index:20;
+
+    top:-4px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:0;
+    height:0;
+
+    border-left:20px solid transparent;
+    border-right:20px solid transparent;
+    border-top:40px solid white;
+
+    filter:
+        drop-shadow(0 0 8px #ffd84d)
+        drop-shadow(0 5px 6px rgba(0,0,0,.8));
+}
+
+.pointer::before{
+    content:"";
+
+    position:absolute;
+
+    left:-8px;
+    top:-38px;
+
+    width:16px;
+    height:16px;
+
+    border-radius:50%;
+
+    background:#ffd84d;
+
+    box-shadow:
+        0 0 15px #ffd84d,
+        0 0 30px #ff9d00;
+}
+
+/* =========================
+   CENTER BUTTON
+========================= */
+
+.center-button{
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:15;
+
+    border-radius:50%;
+
+    border:7px solid white;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #fff,
+            #fff2a6 12%,
+            #ffd84d 28%,
+            #ff9d00 65%,
+            #b45309
+        );
+
+    color:#351500;
+
+    box-shadow:
+        0 0 25px rgba(255,216,77,.6),
+        0 0 60px rgba(255,159,28,.3),
+        inset 0 3px 8px rgba(255,255,255,.7);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:.25s;
+}
+
+.center-button:hover{
+    transform:
+        translate(-50%,-50%)
+        scale(1.08);
+
+    box-shadow:
+        0 0 35px rgba(255,216,77,.8),
+        0 0 80px rgba(255,159,28,.4);
+}
+
+.center-button:active{
+    transform:
+        translate(-50%,-50%)
+        scale(.95);
+}
+
+.center-icon{
+    font-size:30px;
+}
+
+.center-text{
+    font-size:10px;
+    font-weight:900;
+    margin-top:4px;
+}
+
+/* =========================
+   SPIN BUTTON
+========================= */
+
+.spin-button{
+    position:relative;
+    z-index:5;
+
+    width:min(400px,90%);
+
+    margin:38px auto 0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+
+    padding:17px 25px;
+
+    border:0;
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff2a6,
+            #ffd84d 35%,
+            #ff9d00
+        );
+
+    color:#281500;
+
+    font-family:inherit;
+
+    font-size:14px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 35px rgba(255,159,0,.22);
+
+    transition:.25s;
+}
+
+.spin-button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 45px rgba(255,159,0,.35);
+}
+
+.spin-button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result{
+    display:none;
+
+    width:min(570px,95%);
+
+    margin:30px auto 0;
+
+    padding:27px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.025)
+        );
+
+    border:1px solid rgba(255,255,255,.10);
+
+    animation:resultIn .5s ease;
+
+    position:relative;
+    z-index:5;
+}
+
+@keyframes resultIn{
+    from{
+        opacity:0;
+        transform:
+            translateY(20px)
+            scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.result-icon{
+    font-size:52px;
+
+    margin-bottom:10px;
+
+    filter:
+        drop-shadow(0 0 15px rgba(255,216,77,.35));
+}
+
+.result h2{
+    font-size:22px;
+    font-weight:900;
+
+    color:var(--gold);
+
+    margin-bottom:9px;
+}
+
+.result p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.claim{
+    width:100%;
+
+    margin-top:18px;
+
+    padding:15px;
+
+    border:0;
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #16a34a
+        );
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:13px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 30px rgba(34,197,94,.18);
+}
+
+.telegram{
+    display:block;
+
+    margin-top:10px;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:#67e8f9;
+
+    border:1px solid rgba(34,211,238,.20);
+
+    background:rgba(34,211,238,.06);
+
+    font-size:12px;
+    font-weight:800;
+}
+
+/* =========================
+   PRIZES
+========================= */
+
+.prizes{
+    width:min(850px,94%);
+
+    margin:35px auto 70px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+}
+
+.prize{
+    padding:18px 8px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid rgba(255,255,255,.07);
+
+    transition:.25s;
+}
+
+.prize:hover{
+    transform:translateY(-4px);
+
+    border-color:
+        rgba(255,216,77,.3);
+
+    background:
+        rgba(255,216,77,.045);
+}
+
+.prize-icon{
+    font-size:23px;
+
+    margin-bottom:8px;
+}
+
+.prize strong{
+    display:block;
+
+    color:var(--gold);
+
+    font-size:13px;
+
+    margin-bottom:5px;
+}
+
+.prize span{
+    color:var(--muted);
+
+    font-size:9px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.78);
+
+    backdrop-filter:blur(14px);
+
+    z-index:100;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    width:min(450px,100%);
+
+    padding:30px;
+
+    border-radius:28px;
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #20243a,
+            #0c0e19
+        );
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.7);
+
+    animation:modalIn .35s ease;
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.close{
+    position:absolute;
+
+    top:14px;
+    right:15px;
+
+    width:35px;
+    height:35px;
+
+    border:0;
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.07);
+
+    color:white;
+
+    font-size:21px;
+
+    cursor:pointer;
+}
+
+.modal-icon{
+    font-size:43px;
+    margin-bottom:8px;
+}
+
+.modal-box h2{
+    font-size:22px;
+    font-weight:900;
+
+    margin-bottom:8px;
+}
+
+.modal-description{
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    margin-bottom:22px;
+}
+
+.label{
+    display:block;
+
+    color:#d9dbea;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+}
+
+.price-input{
+    width:100%;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    outline:none;
+
+    border:
+        1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(0,0,0,.28);
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:17px;
+
+    font-weight:800;
+}
+
+.price-input:focus{
+    border-color:var(--gold);
+
+    box-shadow:
+        0 0 0 3px rgba(255,216,77,.08);
+}
+
+.calculate{
+    width:100%;
+
+    margin-top:12px;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd84d,
+            #ff9d00
+        );
+
+    color:#291700;
+
+    font-family:inherit;
+
+    font-size:13px;
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+/* =========================
+   CALCULATION
+========================= */
+
+.calculation{
+    display:none;
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:
+        rgba(34,197,94,.06);
+
+    border:
+        1px solid rgba(34,197,94,.20);
+
+    text-align:center;
+}
+
+.calculation.show{
+    display:block;
+
+    animation:resultIn .4s ease;
+}
+
+.old-price{
+    color:#858aa3;
+
+    font-size:13px;
+
+    text-decoration:line-through;
+}
+
+.discount-text{
+    color:#86efac;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    margin:6px 0;
+}
+
+.new-price{
+    font-size:32px;
+
+    font-weight:900;
+
+    color:white;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.15);
+}
+
+.save{
+    margin-top:5px;
+
+    color:#86efac;
+
+    font-size:11px;
+}
+
+.final-telegram{
+    display:block;
+
+    margin-top:16px;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    background:#229ed9;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+/* =========================
+   JACKPOT RESULT
+========================= */
+
+.jackpot-result{
+    border-color:
+        rgba(255,216,77,.35);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,216,77,.10),
+            rgba(255,255,255,.025)
+        );
+
+    box-shadow:
+        0 0 50px rgba(255,216,77,.08);
+}
+
+.jackpot-result h2{
+    font-size:25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffd84d,
+            #ff9d00,
+            #fff
+        );
+
+    background-size:300%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    animation:textShine 4s linear infinite;
+}
+
+.jackpot-value{
+    display:inline-block;
+
+    margin-top:13px;
+
+    padding:9px 16px;
+
+    border-radius:50px;
+
+    color:#2a1800;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff2a6,
+            #ffd84d,
+            #ff9d00
+        );
+
+    font-size:12px;
+    font-weight:900;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+
+    padding:25px 15px 45px;
+
+    color:#5f637b;
+
+    font-size:10px;
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti{
+    position:fixed;
+
+    top:-30px;
+
+    z-index:300;
+
+    font-size:18px;
+
+    pointer-events:none;
+
+    animation:
+        confettiFall
+        linear
+        forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    header{
+        padding:20px 0;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+
+    .online{
+        font-size:8px;
+        padding:7px 10px;
+    }
+
+    .hero{
+        margin-top:25px;
+    }
+
+    .hero h1{
+        letter-spacing:-2.5px;
+    }
+
+    .hero p{
+        font-size:12px;
+    }
+
+    .game-card{
+        padding:
+            25px
+            10px
+            30px;
+
+        border-radius:28px;
+    }
+
+    .game-heading h2{
+        font-size:21px;
+    }
+
+    .jackpot{
+        font-size:9px;
+        padding:11px 7px;
+    }
+
+    .wheel-wrapper{
+        width:min(430px,94vw);
+    }
+
+    .wheel-outer{
+        padding:9px;
+    }
+
+  .segment {
+        font-size: 14px;
+        padding-left: 20px;
+        padding-right: 6px;
+        line-height: 1.15;
+    }
+
+
+
+    .center-button{
+        width:92px;
+        height:92px;
+        border-width:5px;
+    }
+
+    .center-icon{
+        font-size:24px;
+    }
+
+    .center-text{
+        font-size:8px;
+    }
+
+    .pointer{
+        border-left-width:15px;
+        border-right-width:15px;
+        border-top-width:31px;
+    }
+
+    .prizes{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+@media(max-width:380px){
+
+.wheel-wrapper {
+        width:330px;
+    }
+
+    .segment {
+        font-size:10px;
+        padding-left:16px;
+        padding-right:5px;
+        line-height:1.1;
+    }
+        .seg1{  
+        font-size:8px;
+    }
+
+    .center-button{
+        width:78px;
+        height:78px;
+    }
+
+    .center-icon{
+        font-size:20px;
+    }
+
+    .center-text{
+        font-size:7px;
+    }
+}
+.profile-btn {
+  width: 100%;
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 12px 16px;
+
+  border: 1px solid rgba(245, 197, 66, .28);
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245, 197, 66, .16),
+      rgba(255, 255, 255, .035)
+    );
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, .3),
+    inset 0 1px 0 rgba(255,255,255,.08);
+
+  color: white;
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Yorqin effekt */
+.profile-btn::before {
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.12),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: .6s ease;
+}
+
+.profile-btn:hover::before {
+  left: 130%;
+}
+
+.profile-btn:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(245,197,66,.65);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245,197,66,.24),
+      rgba(255,255,255,.055)
+    );
+
+  box-shadow:
+    0 18px 45px rgba(245,197,66,.15),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.profile-btn:active {
+  transform: scale(.98);
+}
+
+
+/* Avatar */
+.profile-icon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff4ae,
+      #f5c542 50%,
+      #a87500
+    );
+
+  color: #211800;
+
+  font-size: 22px;
+
+  box-shadow:
+    0 8px 25px rgba(245,197,66,.25),
+    inset 0 1px 3px rgba(255,255,255,.8);
+}
+
+
+/* Matn */
+.profile-text {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 3px;
+}
+
+.profile-text strong {
+  font-size: 15px;
+  font-weight: 900;
+
+  background:
+    linear-gradient(
+      90deg,
+      #fff,
+      #f5c542
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.profile-text small {
+  color: rgba(255,255,255,.4);
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+
+/* O'ngdagi strelka */
+.profile-arrow {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.05);
+
+  color: #f5c542;
+
+  font-size: 27px;
+  line-height: 1;
+
+  transition: .25s ease;
+}
+
+.profile-btn:hover .profile-arrow {
+  transform: translateX(4px);
+
+  background: rgba(245,197,66,.12);
+}
+.attempt-box{
+    position:relative;
+    z-index:5;
+    width:min(400px,90%);
+    margin:-10px auto 25px;
+    padding:14px 20px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    border:1px solid rgba(255,216,77,.25);
+    background:rgba(255,216,77,.06);
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.attempt-box span{
+    color:#cfd2e3;
+    font-size:11px;
+    font-weight:800;
+}
+
+.attempt-box strong{
+    color:var(--gold);
+    font-size:20px;
+    font-weight:900;
+}
+.achievements-box {
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.achievements-box h2 {
+    color: #ffd700;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.prize-item {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    background: rgba(255, 215, 0, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.prize-name {
+    font-weight: bold;
+    color: #fff;
+}
+
+.prize-date {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+.no-prizes {
+    text-align: center;
+    color: #999;
+    padding: 10px;
+}
+@media(max-width:500px){
+    .attempt-box{
+        width:92%;
+        padding:13px 15px;
+    }
+
+    .attempt-box span{
+        font-size:9px;
+    }
+
+    .attempt-box strong{
+        font-size:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-light one"></div>
+<div class="bg-light two"></div>
+
+<div class="stars" id="stars"></div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        💎 <span>GOLD</span> NOMERLAR
+    </div>
+
+    <button class="profile-btn" onclick="window.location.href='profile.html'">
+  <span class="profile-icon">👤</span>
+  <span class="profile-text">
+    <strong>Profilim</strong>
+    <small>Shaxsiy kabinet</small>
+  </span>
+  <span class="profile-arrow">›</span>
+</button>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="badge">
+        🏆 BUGUNGI SUPER AKSIYA
+    </div>
+
+    <h1>
+        OMADINGIZNI
+        <br>
+        <span class="gradient-text">
+            SINAB KO‘RING
+        </span>
+    </h1>
+
+    <p>
+        Barabanni aylantiring va katta chegirmalardan
+        yoki <b>250 000 so‘mlik chiroyli nomer</b>
+        bosh sovrinidan birini yutib oling!
+    </p>
+
+</section>
+
+
+<!-- GAME -->
+
+<section class="game-card">
+
+    <div class="game-heading">
+
+        <h2>
+            🎰 OMAD BARABANI
+        </h2>
+
+        <p>
+            Barabanni aylantiring — balki omad siz tomonda!
+        </p>
+
+    </div>
+
+
+    <!-- JACKPOT -->
+
+    <div class="jackpot">
+        🏆 BOSH SOVRIN:
+        250 000 SO‘MLIK CHIROYLI NOMER
+    </div>
+<div class="attempt-box">
+    <span>🎯 QOLGAN POPITKA</span>
+    <strong id="spinCount">Yuklanmoqda...</strong>
+</div>
+
+</div>
+<div id="premiumOffer" style="display:none; margin-top:15px; padding:15px; border:1px solid #ffd700; border-radius:15px; text-align:center;">
+    <div style="font-size:18px; font-weight:bold; color:#ffd700;">
+        💎 PREMIUM POPITKA
+    </div>
+    <div style="margin:8px 0; font-size:16px;">
+        3 ta popitka — <b>10 so‘m</b>
+    </div>
+    <button onclick="buyPremiumSpins()" style="padding:12px 20px; border:0; border-radius:10px; background:#ffd700; color:#000; font-weight:bold; cursor:pointer;">
+        💎 10 0000 SO‘MGA OLISH
+    </button>
+</div>
+    <!-- WHEEL -->
+
+    <div class="wheel-wrapper">
+
+        <div class="wheel-shadow"></div>
+
+        <div class="pointer"></div>
+
+        <div class="wheel-outer">
+
+            <div class="wheel-border"></div>
+
+            <div
+                class="wheel"
+                id="wheel"
+            >
+
+                
+                
+                
+                
+                <div class="segment seg1">
+                   🎉 20% SKIDKA
+                </div>
+
+
+                <div class="segment seg2">
+                     😊 10% SKIDKA
+                    </div>
+                    
+
+                <div class="segment seg3">
+                        ❌ YUTUQSIZ
+                </div>
+
+
+                <div class="segment seg4">
+                    🏆 250 000 SO‘MLIK
+                    NOMER
+                </div>
+                
+                
+                <div class="segment seg5">
+                     🔥 70% SKIDKA
+                    </div>
+                    
+                                    <div class="segment seg6">
+                                          💎 50% SKIDKA 
+                                    </div>
+
+                <div class="segment seg7">
+                    ⚡ 30% SKIDKA
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- CENTER -->
+
+        <div
+            class="center-button"
+            id="centerButton"
+            onclick="spinWheel()"
+        >
+
+            <div class="center-icon">
+                🎰
+            </div>
+
+            <div class="center-text">
+                AYLANTIR
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUTTON -->
+
+    <button
+        class="spin-button"
+        id="spinButton"
+        onclick="spinWheel()"
+    >
+
+        🎰 BARABANNI AYLANTIRISH
+
+    </button>
+
+
+    <!-- RESULT -->
+
+    <div
+        class="result"
+        id="result"
+    >
+
+        <div
+            class="result-icon"
+            id="resultIcon"
+        >
+            🎉
+        </div>
+
+        <h2 id="resultTitle">
+            Tabriklaymiz!
+        </h2>
+
+        <p id="resultText">
+            Siz yutuqqa ega bo‘ldingiz.
+        </p>
+
+        <div
+            id="jackpotValue"
+            class="jackpot-value"
+            style="display:none;"
+        >
+            🏆 BOSH SOVRIN
+        </div>
+
+        <button
+            class="claim"
+            id="claimButton"
+            onclick="openClaim()"
+        >
+            🎁 YUTUQNI OLISH
+        </button>
+
+        <a
+            href="https://t.me/Code4jannah"
+            target="_blank"
+            class="telegram"
+        >
+            💬 Telegram orqali bog‘lanish
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- PRIZES -->
+
+<div class="prizes">
+
+    <div class="prize">
+
+        <div class="prize-icon">
+            🏆
+        </div>
+
+        <strong>
+            BOSH SOVRIN
+        </strong>
+
+        <span>
+            300 000 so‘mlik nomer
+        </span>
+
+    </div>
+
+
+    <div class="prize">
+
+        <div class="prize-icon">
+            🔥
+        </div>
+
+        <strong>
+            70% SKIDKA
+        </strong>
+
+        <span>
+            Katta chegirma
+        </span>
+
+    </div>
+
+
+    <div class="prize">
+
+        <div class="prize-icon">
+            💎
+        </div>
+
+        <strong>
+            50% SKIDKA
+        </strong>
+
+        <span>
+            Yarim narx
+        </span>
+
+    </div>
+
+
+    <div class="prize">
+
+        <div class="prize-icon">
+            ⚡
+        </div>
+
+        <strong>
+            30% SKIDKA
+        </strong>
+
+        <span>
+            Chegirma
+        </span>
+
+    </div>
+
+
+    <div class="prize">
+
+        <div class="prize-icon">
+            🎉
+        </div>
+
+        <strong>
+            20% SKIDKA
+        </strong>
+
+        <span>
+            Chegirma
+        </span>
+
+    </div>
+
+
+    <div class="prize">
+
+        <div class="prize-icon">
+            😊
+        </div>
+
+        <strong>
+            10% SKIDKA
+        </strong>
+
+        <span>
+            Chegirma
+        </span>
+
+    </div>
+
+
+    <div class="prize">
+
+        <div class="prize-icon">
+            ❌
+        </div>
+
+        <strong>
+            YUTUQSIZ
+        </strong>
+
+        <span>
+            Keyingi safar urinib ko‘ring
+        </span>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © 2026 GOLD NOMERLAR
+    <br>
+    Chiroyli nomer — o‘zingizga yarashadigan raqam 💎
+</footer>
+
+
+<!-- =========================
+     PRICE MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
+
+        <div class="modal-icon">
+            💰
+        </div>
+
+        <h2>
+            Chegirmani hisoblash
+        </h2>
+
+        <p class="modal-description">
+            Nomerning asl narxini kiriting.
+            Siz yutgan chegirma avtomatik
+            hisoblanadi.
+        </p>
+
+
+        <label class="label">
+            NOMERNING ASL NARXI
+        </label>
+
+        <input
+            type="number"
+            id="priceInput"
+            class="price-input"
+            placeholder="Masalan: 70000"
+            min="0"
+        >
+
+
+        <button
+            class="calculate"
+            onclick="calculatePrice()"
+        >
+            ⚡ CHEGIRMALI NARXNI HISOBLASH
+        </button>
+
+
+        <!-- CALCULATION -->
+
+        <div
+            class="calculation"
+            id="calculation"
+        >
+
+            <div
+                class="old-price"
+                id="oldPrice"
+            >
+                70 000 so‘m
+            </div>
+
+            <div
+                class="discount-text"
+                id="discountText"
+            >
+                20% CHEGIRMA
+            </div>
+
+            <div
+                class="new-price"
+                id="newPrice"
+            >
+                56 000 so‘m
+            </div>
+
+            <div
+                class="save"
+                id="saveText"
+            >
+                Siz 14 000 so‘m tejaysiz 🎉
+            </div>
+
+
+            <a
+                href="https://t.me/Code4jannah"
+                target="_blank"
+                class="final-telegram"
+            >
+                📲 YUTUQNI OLISH UCHUN YOZISH
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================
+   FIREBASE
+========================= */
+
+import {
+    initializeApp,
+    getApps,
+    getApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    runTransaction,
+    collection,
+    addDoc,
+    query,
+    where,
+    getDocs,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAW4JRvs_gwVHM1R8NJqfpB_toYIIZjWl0",
+    authDomain: "authapp-e44f9.firebaseapp.com",
+    projectId: "authapp-e44f9",
+    storageBucket: "authapp-e44f9.firebasestorage.app",
+    messagingSenderId: "102646770113",
+    appId: "1:102646770113:web:1eeb323aa47269ac0a6740",
+    measurementId: "G-YND4R4909"
+};
+
+
+/* =========================
+   FIREBASE APP
+========================= */
+
+const app = getApps().length
+    ? getApp()
+    : initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const stars = document.getElementById("stars");
+const wheel = document.getElementById("wheel");
+const spinButton = document.getElementById("spinButton");
+const centerButton = document.getElementById("centerButton");
+
+const result = document.getElementById("result");
+const resultIcon = document.getElementById("resultIcon");
+const resultTitle = document.getElementById("resultTitle");
+const resultText = document.getElementById("resultText");
+const claimButton = document.getElementById("claimButton");
+const jackpotValue = document.getElementById("jackpotValue");
+
+const modal = document.getElementById("modal");
+const priceInput = document.getElementById("priceInput");
+const calculation = document.getElementById("calculation");
+
+const spinCount = document.getElementById("spinCount");
+const prizesBox = document.getElementById("myPrizes");
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let spinning = false;
+let rotation = 0;
+let currentDiscount = 0;
+let currentUser = null;
+let remainingSpins = 0;
+
+
+/* =========================
+   STARS
+========================= */
+
+for (let i = 0; i < 120; i++) {
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 4 + "s";
+
+    star.style.animationDuration =
+        (2 + Math.random() * 4) + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* =========================
+   PRIZES
+   BARABAN BILAN BIR XIL
+========================= */
+
+const prizes = [
+
+    {
+        name: "50% CHEGIRMA",
+        icon: "💎",
+        type: "discount",
+        discount: 50
+    },
+
+    {
+        name: "30% CHEGIRMA",
+        icon: "⚡",
+        type: "discount",
+        discount: 30
+    },
+
+    {
+        name: "20% CHEGIRMA",
+        icon: "🎉",
+        type: "discount",
+        discount: 20
+    },
+
+    {
+        name: "10% CHEGIRMA",
+        icon: "😊",
+        type: "discount",
+        discount: 10
+    },
+
+    {
+        name: "YUTUQSIZ",
+        icon: "❌",
+        type: "none",
+        discount: 0
+    },
+
+    {
+        name: "250 000 SO‘MLIK CHIROYLI NOMER",
+        icon: "🏆",
+        type: "jackpot",
+        discount: 0
+    },
+
+    {
+        name: "70% CHEGIRMA",
+        icon: "🔥",
+        type: "discount",
+        discount: 70
+    }
+
+];
+
+
+/* =========================
+   SAVE PRIZE
+========================= */
+
+async function savePrize(prize) {
+
+    if (!currentUser) return;
+
+    try {
+
+        await addDoc(
+            collection(db, "prizes"),
+            {
+                userId: currentUser.uid,
+                name: prize.name,
+                icon: prize.icon,
+                type: prize.type,
+                discount: prize.discount || 0,
+                createdAt: serverTimestamp()
+            }
+        );
+
+        console.log("✅ Yutuq saqlandi");
+
+        await loadMyPrizes();
+
+    } catch (error) {
+
+        console.error(
+            "❌ Yutuqni saqlash xatosi:",
+            error
+        );
+    }
+}
+
+
+/* =========================
+   LOAD MY PRIZES
+========================= */
+
+async function loadMyPrizes() {
+
+    if (!currentUser || !prizesBox) return;
+
+    prizesBox.innerHTML = `
+        <p class="no-prizes">
+            ⏳ Yutuqlar yuklanmoqda...
+        </p>
+    `;
+
+    try {
+
+        const prizesQuery = query(
+            collection(db, "prizes"),
+            where(
+                "userId",
+                "==",
+                currentUser.uid
+            )
+        );
+
+        const snapshot =
+            await getDocs(prizesQuery);
+
+
+        if (snapshot.empty) {
+
+            prizesBox.innerHTML = `
+                <p class="no-prizes">
+                    🏆 Hali yutuqlaringiz yo‘q
+                </p>
+            `;
+
+            return;
+        }
+
+
+        const myPrizes = [];
+
+        snapshot.forEach((docSnap) => {
+
+            myPrizes.push({
+                id: docSnap.id,
+                ...docSnap.data()
+            });
+
+        });
+
+
+        /* Eng yangi yutuq tepada */
+
+        myPrizes.sort((a, b) => {
+
+            const aTime =
+                a.createdAt?.toMillis?.() || 0;
+
+            const bTime =
+                b.createdAt?.toMillis?.() || 0;
+
+            return bTime - aTime;
+
+        });
+
+
+        prizesBox.innerHTML = "";
+
+
+        myPrizes.forEach((prize) => {
+
+            let dateText = "";
+
+            if (
+                prize.createdAt &&
+                typeof prize.createdAt.toDate === "function"
+            ) {
+
+                dateText =
+                    prize.createdAt
+                        .toDate()
+                        .toLocaleString("uz-UZ");
+
+            }
+
+
+            const item =
+                document.createElement("div");
+
+            item.className =
+                "prize-item";
+
+
+            item.innerHTML = `
+
+                <div class="prize-name">
+
+                    ${prize.icon || "🏆"}
+
+                    ${prize.name}
+
+                </div>
+
+                <div class="prize-date">
+
+                    📅
+
+                    ${dateText || "Hozirgina"}
+
+                </div>
+
+            `;
+
+
+            prizesBox.appendChild(item);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ Yutuqlarni yuklash xatosi:",
+            error
+        );
+
+        prizesBox.innerHTML = `
+
+            <p class="no-prizes">
+
+                ❌ Yutuqlarni yuklab bo‘lmadi.
+
+            </p>
+
+        `;
+    }
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        currentUser = user;
+
+
+        console.log(
+            "Account ID:",
+            user.uid
+        );
+
+
+        /* Popitkalarni yuklash */
+
+        await loadSpins();
+
+
+        /* Yutuqlarni yuklash */
+
+        await loadMyPrizes();
+
+    }
+);
+
+
+/* =========================
+   LOAD SPINS
+========================= */
+
+async function loadSpins() {
+
+    if (!currentUser) return;
+
+
+    try {
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        await runTransaction(
+            db,
+            async (transaction) => {
+
+                const snap =
+                    await transaction.get(
+                        userRef
+                    );
+
+
+                if (!snap.exists()) {
+
+                    throw new Error(
+                        "Foydalanuvchi profili topilmadi"
+                    );
+
+                }
+
+
+                const data =
+                    snap.data();
+
+
+                let freeSpins =
+                    Number(
+                        data.freeSpins ?? 1
+                    );
+
+
+                let extraSpins =
+                    Number(
+                        data.extraSpins ?? 0
+                    );
+
+
+                if (freeSpins < 0)
+                    freeSpins = 0;
+
+                if (extraSpins < 0)
+                    extraSpins = 0;
+
+
+                const updateData = {};
+
+
+                if (
+                    data.freeSpins === undefined
+                ) {
+
+                    updateData.freeSpins =
+                        freeSpins;
+
+                }
+
+
+                if (
+                    data.extraSpins === undefined
+                ) {
+
+                    updateData.extraSpins =
+                        extraSpins;
+
+                }
+
+
+                if (
+                    Object.keys(updateData).length > 0
+                ) {
+
+                    transaction.update(
+                        userRef,
+                        updateData
+                    );
+
+                }
+
+
+                remainingSpins =
+                    freeSpins +
+                    extraSpins;
+
+            }
+        );
+
+
+        updateSpinUI();
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ Spin yuklash xatosi:",
+            error
+        );
+
+
+        spinCount.textContent =
+            "Xato";
+
+
+        spinButton.disabled = true;
+
+
+        centerButton.style.pointerEvents =
+            "none";
+
+
+        alert(
+            "Popitkalarni yuklashda xatolik yuz berdi."
+        );
+
+    }
+}
+
+
+/* =========================
+   UPDATE SPIN UI
+========================= */
+
+function updateSpinUI() {
+
+    spinCount.textContent = remainingSpins;
+
+    const premiumOffer = document.getElementById("premiumOffer");
+
+    if (remainingSpins <= 0) {
+
+        spinButton.disabled = true;
+
+        spinButton.innerHTML =
+            "🚫 POPITKA QOLMAGAN";
+
+        centerButton.style.pointerEvents =
+            "none";
+
+        centerButton.style.opacity =
+            "0.5";
+
+
+        if (premiumOffer) {
+
+            premiumOffer.style.display = "block";
+
+            premiumOffer.innerHTML = `
+                <div style="
+                    text-align:center;
+                    padding:20px;
+                    border-radius:18px;
+                    background:linear-gradient(
+                        135deg,
+                        rgba(255,216,77,.12),
+                        rgba(255,159,0,.05)
+                    );
+                    border:1px solid rgba(255,216,77,.3);
+                    box-shadow:0 10px 30px rgba(0,0,0,.25);
+                ">
+
+                    <div style="
+                        font-size:28px;
+                        margin-bottom:8px;
+                    ">
+                        🎰
+                    </div>
+
+                    <div style="
+                        color:#ffd84d;
+                        font-size:16px;
+                        font-weight:900;
+                        margin-bottom:8px;
+                    ">
+                        POPITKANGIZ QOLMAGAN
+                    </div>
+
+                    <div style="
+                        color:#aaa;
+                        font-size:12px;
+                        line-height:1.6;
+                        margin-bottom:15px;
+                    ">
+                        Jackpot olish uchun Telegram orqali yozing.
+                    </div>
+
+                    <a
+                      href="https://t.me/Code4jannah?text=${encodeURIComponent(
+    "Assalomu alaykum! 👋 Jackpot olish uchun yozdim 🎰 10 000 so‘mlik variantni olmoqchi edim 😊"
+)}"
+                        target="_blank"
+                        style="
+                            display:block;
+                            width:100%;
+                            padding:14px 18px;
+                            border-radius:14px;
+                            background:linear-gradient(
+                                135deg,
+                                #229ed9,
+                                #0088cc
+                            );
+                            color:white;
+                            text-decoration:none;
+                            font-size:13px;
+                            font-weight:900;
+                            box-shadow:
+                                0 10px 25px rgba(34,158,217,.25);
+                        "
+                    >
+                        ✈️ TELEGRAM ORQALI SOTIB OLISH
+                    </a>
+
+                </div>
+            `;
+        }
+
+    } else {
+
+        spinButton.disabled = false;
+
+        spinButton.innerHTML =
+            "🎯 BARABANNI AYLANTIRISH";
+
+        centerButton.style.pointerEvents =
+            "auto";
+
+        centerButton.style.opacity =
+            "1";
+
+        if (premiumOffer) {
+            premiumOffer.style.display =
+                "none";
+        }
+    }
+}
+
+
+/* =========================
+   USE ONE SPIN
+========================= */
+
+async function useOneSpin() {
+
+    if (!currentUser) {
+
+        window.location.href =
+            "index.html";
+
+        return false;
+    }
+
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+
+    try {
+
+        let success = false;
+
+
+        await runTransaction(
+            db,
+            async (transaction) => {
+
+                const snap =
+                    await transaction.get(
+                        userRef
+                    );
+
+
+                if (!snap.exists()) {
+
+                    throw new Error(
+                        "Foydalanuvchi topilmadi"
+                    );
+
+                }
+
+
+                const data =
+                    snap.data();
+
+
+                let freeSpins =
+                    Number(
+                        data.freeSpins ?? 1
+                    );
+
+
+                let extraSpins =
+                    Number(
+                        data.extraSpins ?? 0
+                    );
+
+
+                if (freeSpins < 0)
+                    freeSpins = 0;
+
+                if (extraSpins < 0)
+                    extraSpins = 0;
+
+
+                if (freeSpins > 0) {
+
+                    freeSpins--;
+
+                }
+
+                else if (extraSpins > 0) {
+
+                    extraSpins--;
+
+                }
+
+                else {
+
+                    success = false;
+
+                    return;
+                }
+
+
+                transaction.update(
+                    userRef,
+                    {
+                        freeSpins:
+                            freeSpins,
+
+                        extraSpins:
+                            extraSpins
+                    }
+                );
+
+
+                remainingSpins =
+                    freeSpins +
+                    extraSpins;
+
+
+                success = true;
+
+            }
+        );
+
+
+        updateSpinUI();
+
+
+        return success;
+
+
+    } catch (error) {
+
+        console.error(
+            "❌ Popitka ishlatish xatosi:",
+            error
+        );
+
+
+        alert(
+            "Popitkani ishlatishda xatolik yuz berdi."
+        );
+
+
+        return false;
+
+    }
+}
+
+
+/* =========================
+   SPIN WHEEL
+========================= */
+
+/* =========================
+   SPIN WHEEL
+========================= */
+
+/* =========================
+   SPIN WHEEL
+========================= */
+
+async function spinWheel() {
+
+    if (spinning) return;
+
+    if (!currentUser) {
+        window.location.href = "index.html";
+        return;
+    }
+
+    if (remainingSpins <= 0) {
+        updateSpinUI();
+
+        alert("Sizda popitka qolmagan.");
+        return;
+    }
+
+
+    /* =========================
+       POPITKANI ISHLATISH
+    ========================= */
+
+    const spinAllowed = await useOneSpin();
+
+    if (!spinAllowed) {
+        alert("Sizda popitka qolmagan.");
+        return;
+    }
+
+
+    /* =========================
+       SPIN BOSHLANDI
+    ========================= */
+
+    spinning = true;
+
+    spinButton.disabled = true;
+
+    centerButton.style.pointerEvents = "none";
+    centerButton.style.opacity = "0.5";
+
+    result.style.display = "none";
+
+
+    /* =========================
+       RANDOM PRIZE
+    ========================= */
+
+    const index = Math.floor(
+        Math.random() * prizes.length
+    );
+
+    const prize = prizes[index];
+
+
+    /* =========================
+       SEGMENT
+    ========================= */
+
+    const segmentAngle =
+        360 / prizes.length;
+
+
+    const prizeCenter =
+        index * segmentAngle +
+        segmentAngle / 2;
+
+
+    /* =========================
+       CURRENT ROTATION
+    ========================= */
+
+    const currentRotation =
+        ((rotation % 360) + 360) % 360;
+
+
+    /* =========================
+       TARGET
+    ========================= */
+
+    let targetRotation =
+        360 - prizeCenter;
+
+
+    let difference =
+        targetRotation - currentRotation;
+
+
+    if (difference < 0) {
+        difference += 360;
+    }
+
+
+    /* =========================
+       EXTRA ROUNDS
+    ========================= */
+
+    const extraRounds =
+        6 + Math.floor(Math.random() * 3);
+
+
+    const finalRotation =
+        rotation +
+        (extraRounds * 360) +
+        difference;
+
+
+    rotation = finalRotation;
+
+
+    /* =========================
+       AYLANISH
+    ========================= */
+
+    wheel.style.transform =
+        `rotate(${rotation}deg)`;
+
+
+    /* =========================
+       NATIJA
+    ========================= */
+
+    setTimeout(async () => {
+
+        spinning = false;
+
+        updateSpinUI();
+
+        await savePrize(prize);
+
+        showResult(prize);
+
+    }, 5600);
+}
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult(prize) {
+
+    result.style.display =
+        "block";
+
+
+    result.classList.remove(
+        "jackpot-result"
+    );
+
+
+    resultIcon.textContent =
+        prize.icon;
+
+
+    resultTitle.textContent =
+        prize.name;
+
+
+    jackpotValue.style.display =
+        "none";
+
+
+    /* JACKPOT */
+
+    if (prize.type === "jackpot") {
+
+        currentDiscount = 0;
+
+
+        result.classList.add(
+            "jackpot-result"
+        );
+
+
+        resultIcon.textContent =
+            "🏆";
+
+
+        resultTitle.textContent =
+            "🎉 TABRIKLAYMIZ!";
+
+
+        resultText.innerHTML = `
+
+            <b>
+                SIZ BOSH YUTUQNI YUTIB OLDINGIZ!
+            </b>
+
+            <br><br>
+
+            Sizga 300 000 so‘mlik
+            chiroyli nomer sovg‘a qilinadi.
+
+            <br><br>
+
+            Yutuqni olish uchun Telegram
+            orqali biz bilan bog‘laning.
+
+        `;
+
+
+        jackpotValue.style.display =
+            "inline-block";
+
+
+        claimButton.style.display =
+            "block";
+
+
+        claimButton.textContent =
+            "🏆 BOSH SOVRINNI OLISH";
+
+
+        claimButton.onclick =
+            function () {
+
+                window.open(
+                    "https://t.me/Code4jannah",
+                    "_blank"
+                );
+
+            };
+
+
+        createConfetti();
+
+    }
+
+
+    /* DISCOUNT */
+
+    else if (prize.type === "discount") {
+
+        currentDiscount =
+            Number(
+                prize.discount
+            );
+
+
+        resultIcon.textContent =
+            prize.icon;
+
+
+        resultTitle.textContent =
+            `${currentDiscount}% CHEGIRMA!`;
+
+
+        resultText.innerHTML = `
+
+            🎉 Tabriklaymiz!
+
+            Siz
+
+            <b>
+                ${currentDiscount}% chegirma
+            </b>
+
+            yutdingiz!
+
+            <br><br>
+
+            "🎁 YUTUQNI OLISH"
+            tugmasini bosing
+            va asl narxni kiriting.
+
+        `;
+
+
+        claimButton.style.display =
+            "block";
+
+
+        claimButton.textContent =
+            "🎁 YUTUQNI OLISH";
+
+
+        claimButton.onclick =
+            openClaim;
+
+
+        createConfetti();
+
+    }
+
+
+    /* YUTUQSIZ */
+
+    else {
+
+        currentDiscount = 0;
+
+
+        resultIcon.textContent =
+            "😔";
+
+
+        resultTitle.textContent =
+            "Bu safar omad kelmadi";
+
+
+        resultText.innerHTML = `
+
+            Afsuski, bu safar
+            yutuq chiqmadi.
+
+            <br>
+
+            Keyingi safar yana
+            urinib ko‘ring! 🔥
+
+        `;
+
+
+        claimButton.style.display =
+            "none";
+    }
+
+
+    setTimeout(
+        () => {
+
+            result.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        },
+        150
+    );
+}
+
+
+/* =========================
+   PREMIUM POPITKA
+========================= */
+
+function buyPremiumSpins() {
+
+    alert(
+        "💎 PREMIUM POPITKA\n\n" +
+        "3 ta popitka — 10 so‘m\n\n" +
+        "To‘lov tizimi tez orada ulanadi."
+    );
+
+}
+
+
+/* =========================
+   OPEN CLAIM
+========================= */
+
+function openClaim() {
+
+    if (currentDiscount <= 0)
+        return;
+
+
+    modal.classList.add(
+        "active"
+    );
+
+
+    priceInput.value =
+        "";
+
+
+    calculation.classList.remove(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            priceInput.focus();
+
+        },
+        200
+    );
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal() {
+
+    modal.classList.remove(
+        "active"
+    );
+}
+
+
+/* =========================
+   MODAL CLICK
+========================= */
+
+modal.addEventListener(
+    "click",
+    function(e) {
+
+        if (e.target === modal) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (e.key === "Escape") {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CALCULATE PRICE
+========================= */
+
+function calculatePrice() {
+
+    let inputValue =
+        priceInput.value
+            .toString()
+            .replace(/\s/g, "")
+            .replace(/,/g, "");
+
+
+    const original =
+        Number(inputValue);
+
+
+    if (
+        !original ||
+        original <= 0
+    ) {
+
+        priceInput.style.borderColor =
+            "#ef4444";
+
+
+        priceInput.focus();
+
+
+        setTimeout(
+            () => {
+
+                priceInput.style.borderColor =
+                    "";
+
+            },
+            1000
+        );
+
+
+        return;
+    }
+
+
+    const discountAmount =
+        original *
+        currentDiscount /
+        100;
+
+
+    const newPrice =
+        original -
+        discountAmount;
+
+
+    document.getElementById(
+        "oldPrice"
+    ).textContent =
+        formatPrice(original);
+
+
+    document.getElementById(
+        "discountText"
+    ).textContent =
+        `${currentDiscount}% CHEGIRMA`;
+
+
+    document.getElementById(
+        "newPrice"
+    ).textContent =
+        formatPrice(newPrice);
+
+
+    document.getElementById(
+        "saveText"
+    ).textContent =
+        `Siz ${formatPrice(discountAmount)} tejaysiz 🎉`;
+
+
+    calculation.classList.add(
+        "show"
+    );
+}
+
+
+/* =========================
+   PRICE FORMAT
+========================= */
+
+function formatPrice(number) {
+
+    return Math.round(number)
+        .toLocaleString("uz-UZ")
+        .replace(/,/g, " ")
+        + " so‘m";
+}
+
+
+/* =========================
+   ENTER
+========================= */
+
+priceInput.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (e.key === "Enter") {
+
+            calculatePrice();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti() {
+
+    const items = [
+        "🎉",
+        "✨",
+        "💎",
+        "🏆",
+        "🎁",
+        "⭐",
+        "🔥"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 90;
+        i++
+    ) {
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "confetti";
+
+
+        item.textContent =
+            items[
+                Math.floor(
+                    Math.random() *
+                    items.length
+                )
+            ];
+
+
+        item.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        item.style.animationDuration =
+            2 +
+            Math.random() * 3 +
+            "s";
+
+
+        item.style.animationDelay =
+            Math.random() * 0.7 +
+            "s";
+
+
+        document.body.appendChild(item);
+
+
+        setTimeout(
+            () => {
+                item.remove();
+            },
+            5500
+        );
+
+    }
+}
+
+
+/* =========================
+   GLOBAL FUNCTIONS
+========================= */
+
+window.spinWheel =
+    spinWheel;
+
+window.openClaim =
+    openClaim;
+
+window.closeModal =
+    closeModal;
+
+window.calculatePrice =
+    calculatePrice;
+
+window.buyPremiumSpins =
+    buyPremiumSpins;
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gold Nomerlar | Kirish</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #f5c542;
+    --gold-light: #fff2a8;
+    --gold-dark: #a87500;
+    --black: #030303;
+    --white: #ffffff;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    font-family: "Inter", Arial, sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(245,197,66,.18),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(190,130,0,.16),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(245,197,66,.08),
+            transparent 30%
+        ),
+        #030303;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+BACKGROUND
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.glow {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    opacity: .16;
+
+    animation: floating 9s ease-in-out infinite;
+}
+
+.glow-1 {
+    width: 280px;
+    height: 280px;
+
+    left: -120px;
+    top: -100px;
+
+    background: #f5c542;
+}
+
+.glow-2 {
+    width: 250px;
+    height: 250px;
+
+    right: -120px;
+    bottom: -100px;
+
+    background: #b8860b;
+
+    animation-delay: -3s;
+}
+
+.glow-3 {
+    width: 160px;
+    height: 160px;
+
+    left: 50%;
+    top: 5%;
+
+    background: #ffe99a;
+
+    opacity: .05;
+
+    animation-delay: -5s;
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(25px,-30px);
+    }
+
+}
+
+
+/* =========================================
+STARS
+========================================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            1px 1px at 20% 30%,
+            rgba(255,255,255,.7),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 80% 20%,
+            rgba(255,215,100,.7),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 70% 75%,
+            rgba(255,255,255,.5),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 30% 80%,
+            rgba(255,215,100,.5),
+            transparent
+        );
+
+    opacity: .35;
+}
+
+
+/* =========================================
+MAIN
+========================================= */
+
+.container {
+    width: 100%;
+    max-width: 440px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+CARD
+========================================= */
+
+.card {
+    position: relative;
+
+    padding: 42px 34px 30px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.095),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid rgba(245,197,66,.24);
+
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.7),
+        inset 0 1px 0 rgba(255,255,255,.09);
+
+    overflow: hidden;
+
+    animation: cardIn .7s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(35px)
+            scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* GOLD LINE */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+    right: 12%;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #fff0a3,
+            #f5c542,
+            #fff0a3,
+            transparent
+        );
+
+    box-shadow:
+        0 0 20px #f5c542;
+}
+
+
+/* =========================================
+LOGO
+========================================= */
+
+.logo-wrapper {
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 22px;
+}
+
+.logo {
+    width: 88px;
+    height: 88px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff5b8 0%,
+            #f5c542 45%,
+            #b67d00 100%
+        );
+
+    border:
+        1px solid rgba(255,255,255,.55);
+
+    box-shadow:
+        0 20px 50px rgba(245,197,66,.25),
+        inset 0 2px 6px rgba(255,255,255,.8);
+
+    font-size: 43px;
+
+    animation:
+        logoFloat 4s ease-in-out infinite,
+        logoGlow 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+
+}
+
+@keyframes logoGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 20px 50px rgba(245,197,66,.20),
+            inset 0 2px 6px rgba(255,255,255,.8);
+    }
+
+    50% {
+        box-shadow:
+            0 20px 65px rgba(245,197,66,.38),
+            inset 0 2px 6px rgba(255,255,255,.8);
+    }
+
+}
+
+
+/* =========================================
+TITLE
+========================================= */
+
+.title {
+    text-align: center;
+
+    font-size: 30px;
+
+    font-weight: 900;
+
+    letter-spacing: -.8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffbd9,
+            #f5c542 45%,
+            #fff0a0
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    margin-bottom: 9px;
+}
+
+.subtitle {
+    text-align: center;
+
+    color:
+        rgba(255,255,255,.48);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+INPUT
+========================================= */
+
+.input-group {
+    margin-bottom: 17px;
+}
+
+.label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.input-box {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+
+    left: 16px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size: 18px;
+
+    opacity: .65;
+
+    z-index: 2;
+}
+
+input {
+    width: 100%;
+
+    height: 58px;
+
+    padding:
+        0 52px 0 48px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+    outline: none;
+
+    background:
+        rgba(0,0,0,.30);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition:
+        .25s ease;
+}
+
+input::placeholder {
+    color:
+        rgba(255,255,255,.27);
+}
+
+input:focus {
+    background:
+        rgba(245,197,66,.045);
+
+    border-color:
+        rgba(245,197,66,.65);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(245,197,66,.065),
+
+        0 0 30px
+        rgba(245,197,66,.08);
+}
+
+
+/* =========================================
+EYE
+========================================= */
+
+.eye {
+    position: absolute;
+
+    right: 14px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        rgba(255,255,255,.45);
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    padding: 5px;
+
+    transition: .2s;
+}
+
+.eye:hover {
+    color: var(--gold);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+/* =========================================
+BUTTON
+========================================= */
+
+.login-btn {
+    width: 100%;
+
+    height: 58px;
+
+    margin-top: 8px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4ae,
+            #f5c542 45%,
+            #c08a08
+        );
+
+    color: #171100;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 40px
+        rgba(245,197,66,.18),
+
+        inset 0 1px 0
+        rgba(255,255,255,.85);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.login-btn:hover {
+    transform:
+        translateY(-3px);
+
+    filter:
+        brightness(1.08);
+
+    box-shadow:
+        0 20px 50px
+        rgba(245,197,66,.30);
+}
+
+.login-btn:active {
+    transform:
+        scale(.98);
+}
+
+.login-btn:disabled {
+    opacity: .55;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+}
+
+
+/* =========================================
+MESSAGE
+========================================= */
+
+#message {
+    min-height: 22px;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+FOOTER
+========================================= */
+
+.footer {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 24px;
+
+    color:
+        rgba(255,255,255,.25);
+
+    font-size: 10px;
+
+    letter-spacing: .5px;
+}
+
+.footer .diamond {
+    color:
+        #f5c542;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+ADMIN HINT
+========================================= */
+
+.admin-hint {
+    text-align: center;
+
+    margin-top: 12px;
+
+    color:
+        rgba(255,255,255,.18);
+
+    font-size: 9px;
+
+    user-select: none;
+}
+
+
+/* =========================================
+MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 14px;
+    }
+
+    .card {
+        padding:
+            34px 21px 25px;
+
+        border-radius: 25px;
+    }
+
+    .logo {
+        width: 74px;
+        height: 74px;
+
+        font-size: 35px;
+
+        border-radius: 23px;
+    }
+
+    .title {
+        font-size: 25px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+
+        margin-bottom: 26px;
+    }
+
+    input,
+    .login-btn {
+        height: 55px;
+    }
+}
+
+
+@media (max-width: 350px) {
+
+    .card {
+        padding:
+            28px 17px 22px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+
+        font-size: 30px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+BACKGROUND
+========================================= -->
+
+<div class="background">
+
+    <div class="stars"></div>
+
+    <div class="glow glow-1"></div>
+
+    <div class="glow glow-2"></div>
+
+    <div class="glow glow-3"></div>
+
+</div>
+
+
+
+<!-- =========================================
+LOGIN
+========================================= -->
+
+<div class="container">
+
+    <div class="card">
+
+
+        <!-- LOGO -->
+
+        <div class="logo-wrapper">
+
+            <div class="logo">
+                💎
+            </div>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1 class="title">
+            Gold Nomerlar
+        </h1>
+
+
+        <p class="subtitle">
+
+            Maxsus akkauntingizga kirish uchun
+            <br>
+            login va parolingizni kiriting
+
+        </p>
+
+
+
+        <!-- LOGIN -->
+
+        <div class="input-group">
+
+            <label class="label">
+                Login
+            </label>
+
+
+            <div class="input-box">
+
+                <span class="icon">
+                    👤
+                </span>
+
+
+                <input
+                    type="text"
+                    id="email"
+                    placeholder="Login yoki email"
+                    autocomplete="username"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PASSWORD -->
+
+        <div class="input-group">
+
+            <label class="label">
+                Parol
+            </label>
+
+
+            <div class="input-box">
+
+                <span class="icon">
+                    🔐
+                </span>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Parolingizni kiriting"
+                    autocomplete="current-password"
+                >
+
+
+                <button
+                    class="eye"
+                    id="showPassword"
+                    type="button"
+                >
+                    👁️
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+            class="login-btn"
+            id="loginBtn"
+        >
+
+            🔓 &nbsp; Kirish
+
+        </button>
+
+
+
+        <!-- MESSAGE -->
+
+        <div id="message"></div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <span class="diamond">◆</span>
+
+            Xavfsiz kirish
+
+            <span class="diamond">◆</span>
+
+        </div>
+
+
+        <div class="admin-hint">
+            GOLD NOMERLAR • PREMIUM SYSTEM
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+FIREBASE
+========================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+
+/* =========================================
+FIREBASE CONFIG
+========================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyAW4JRvs_gwVHM1R8NJqfpB_toYIIZjWl0",
+
+    authDomain:
+        "authapp-e44f9.firebaseapp.com",
+
+    projectId:
+        "authapp-e44f9",
+
+    storageBucket:
+        "authapp-e44f9.firebasestorage.app",
+
+    messagingSenderId:
+        "102646770113",
+
+    appId:
+        "1:102646770113:web:1eeb323aa47269ac0a6740",
+
+    measurementId:
+        "G-YND4R4909"
+
+};
+
+
+
+/* =========================================
+FIREBASE
+========================================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+
+/* =========================================
+ELEMENTS
+========================================= */
+
+const email =
+    document.getElementById("email");
+
+const password =
+    document.getElementById("password");
+
+const loginBtn =
+    document.getElementById("loginBtn");
+
+const message =
+    document.getElementById("message");
+
+const showPassword =
+    document.getElementById("showPassword");
+
+
+
+/* =========================================
+SHOW / HIDE PASSWORD
+========================================= */
+
+showPassword.addEventListener(
+    "click",
+    () => {
+
+        if (
+            password.type === "password"
+        ) {
+
+            password.type = "text";
+
+            showPassword.textContent =
+                "🙈";
+
+        }
+
+        else {
+
+            password.type =
+                "password";
+
+            showPassword.textContent =
+                "👁️";
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+LOGIN BUTTON
+========================================= */
+
+loginBtn.addEventListener(
+    "click",
+    login
+);
+
+
+
+/* =========================================
+ENTER SUPPORT
+========================================= */
+
+email.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (event.key === "Enter") {
+
+            password.focus();
+
+        }
+
+    }
+);
+
+
+password.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (event.key === "Enter") {
+
+            login();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+LOGIN
+========================================= */
+
+async function login() {
+
+    const userLogin =
+        email.value.trim();
+
+    const userPassword =
+        password.value;
+
+
+    /* =====================================
+    INPUT TEKSHIRUV
+    ===================================== */
+
+    if (!userLogin) {
+
+        showMessage(
+            "⚠️ Login yoki emailni kiriting!",
+            false
+        );
+
+        email.focus();
+
+        return;
+    }
+
+
+    if (!userPassword) {
+
+        showMessage(
+            "⚠️ Parolni kiriting!",
+            false
+        );
+
+        password.focus();
+
+        return;
+    }
+
+
+
+    /* =====================================
+    LOADING
+    ===================================== */
+
+    loginBtn.disabled = true;
+
+    loginBtn.innerHTML =
+        "⏳ &nbsp; Tekshirilmoqda...";
+
+
+
+    try {
+
+        /* =================================
+        FIREBASE AUTH LOGIN
+        ================================= */
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                userLogin,
+                userPassword
+            );
+
+
+        const user =
+            userCredential.user;
+
+
+
+        /* =================================
+        USER FIRESTORE DOCUMENT
+        ================================= */
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
+            );
+
+
+        const userSnap =
+            await getDoc(userRef);
+
+
+
+        /* =================================
+        AGAR USERS HUJJATI YO'Q
+        ================================= */
+
+        if (!userSnap.exists()) {
+
+            showMessage(
+                "⚠️ Akkaunt ma'lumotlari topilmadi!",
+                false
+            );
+
+            loginBtn.disabled = false;
+
+            loginBtn.innerHTML =
+                "🔓 &nbsp; Kirish";
+
+            return;
+        }
+
+
+
+        /* =================================
+        USER DATA
+        ================================= */
+
+        const userData =
+            userSnap.data();
+
+
+        const role =
+            userData.role || "user";
+
+
+
+        console.log(
+            "Account ID:",
+            user.uid
+        );
+
+        console.log(
+            "Role:",
+            role
+        );
+
+
+
+        /* =================================
+        ADMIN / OWNER
+        ================================= */
+
+        if (
+            role === "admin" ||
+            role === "owner"
+        ) {
+
+            showMessage(
+                "👑 Admin panelga kirilmoqda...",
+                true
+            );
+
+            loginBtn.innerHTML =
+                "👑 &nbsp; Admin panel...";
+
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "admin.html";
+
+            }, 500);
+
+
+            return;
+        }
+
+
+
+        /* =================================
+        ODDIY USER
+        ================================= */
+
+        showMessage(
+            "✅ Muvaffaqiyatli kirildi!",
+            true
+        );
+
+        loginBtn.innerHTML =
+            "✅ &nbsp; Xush kelibsiz!";
+
+
+        setTimeout(() => {
+
+            window.location.href =
+                "spin.html";
+
+        }, 700);
+
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Firebase error:",
+            error
+        );
+
+
+        /* =================================
+        ERRORLAR
+        ================================= */
+
+        if (
+            error.code ===
+            "auth/invalid-credential"
+        ) {
+
+            showMessage(
+                "❌ Login yoki parol noto‘g‘ri!",
+                false
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "auth/user-not-found"
+        ) {
+
+            showMessage(
+                "❌ Foydalanuvchi topilmadi!",
+                false
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "auth/wrong-password"
+        ) {
+
+            showMessage(
+                "❌ Parol noto‘g‘ri!",
+                false
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
+
+            showMessage(
+                "❌ Email formati noto‘g‘ri!",
+                false
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "auth/too-many-requests"
+        ) {
+
+            showMessage(
+                "⚠️ Juda ko‘p urinish. Keyinroq urinib ko‘ring.",
+                false
+            );
+
+        }
+
+        else if (
+            error.code ===
+            "permission-denied"
+        ) {
+
+            showMessage(
+                "❌ Firestore ruxsati berilmagan!",
+                false
+            );
+
+        }
+
+        else {
+
+            showMessage(
+                "❌ Kirishda xatolik yuz berdi!",
+                false
+            );
+
+        }
+
+
+        loginBtn.disabled = false;
+
+        loginBtn.innerHTML =
+            "🔓 &nbsp; Kirish";
+
+    }
+
+}
+
+
+
+/* =========================================
+MESSAGE
+========================================= */
+
+function showMessage(
+    text,
+    success
+) {
+
+    message.textContent =
+        text;
+
+    message.style.color =
+        success
+            ? "#f5c542"
+            : "#ff6b6b";
+
+}
+
+</script>
+
+</body>
+</html>
